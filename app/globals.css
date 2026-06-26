@@ -130,7 +130,17 @@ body {
   animation: slide-down 0.5s ease-out both;
 }
 
+@keyframes promo-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-promo-marquee {
+  animation: promo-marquee 28s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .animate-fade-in-up, .animate-promo-in { animation: none; }
+  .animate-promo-marquee { animation: none; }
 }

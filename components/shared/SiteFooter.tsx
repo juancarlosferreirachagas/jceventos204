@@ -199,17 +199,17 @@ export function SiteFooter({ theme }: SiteFooterProps) {
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* ── Mobile ── */}
         <div className="md:hidden">
-          <div className="flex justify-center pb-1 pt-4">
+          <div className="flex justify-center pb-0.5 pt-2.5">
             <Link href={theme === "kids" ? "/kids" : "/eventos"} aria-label="Ir para página inicial" className="rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current">
               {theme === "eventos" ? <LogoEventos size="sm" className="items-center" /> : <LogoKids size="sm" className="items-center" />}
             </Link>
           </div>
 
           <nav
-            className="scrollbar-hide w-full overflow-x-auto overscroll-x-contain py-1"
+            className="scrollbar-hide w-full overflow-x-auto overscroll-x-contain py-0.5"
             aria-label="Rodapé"
           >
-            <div className="mx-auto flex w-max flex-nowrap items-center justify-center gap-0 py-0.5">
+            <div className="mx-auto flex w-max flex-nowrap items-center justify-center gap-0">
               {links.map((link, i) => (
                 <span key={link.href + link.label} className="inline-flex shrink-0 items-center">
                   {i > 0 && (
@@ -230,13 +230,20 @@ export function SiteFooter({ theme }: SiteFooterProps) {
             </div>
           </nav>
 
-          <div className="grid grid-cols-2 items-start gap-x-3 px-0.5 pb-3 pt-1">
-            <div className="flex w-full min-w-0 flex-col items-center gap-0 py-0.5 text-center">
-              <h3 className={cn("mb-1 flex min-h-6 w-full items-center justify-center text-[0.625rem] font-bold tracking-[0.06em]", t.heading)}>
+          <div className="grid grid-cols-2 items-start gap-x-3 px-0.5 pb-2 pt-1">
+            <div className="flex w-full min-w-0 flex-col items-center text-center">
+              <h3 className={cn("mb-0.5 text-[0.625rem] font-bold tracking-[0.06em]", t.heading)}>
                 Localização
               </h3>
+              <p className="mb-1 max-w-[9.5rem] text-[0.625rem] leading-snug text-white/75 sm:text-[0.6875rem]">
+                {ADDRESS.street}
+                <br />
+                <span className={t.addressSub}>
+                  {ADDRESS.neighborhood} — {ADDRESS.city}, {ADDRESS.state}
+                </span>
+              </p>
               <div
-                className="flex min-h-9 w-full flex-row items-center justify-center gap-1.5"
+                className="flex w-full flex-row items-center justify-center gap-1.5"
                 role="group"
                 aria-label="Abrir rotas: Waze ou Google Maps"
               >
@@ -257,11 +264,11 @@ export function SiteFooter({ theme }: SiteFooterProps) {
               </div>
             </div>
 
-            <div className="flex w-full min-w-0 flex-col items-center gap-0 py-0.5 text-center">
-              <h3 className={cn("mb-1 flex min-h-6 w-full items-center justify-center text-[0.625rem] font-bold tracking-[0.06em]", t.heading)}>
+            <div className="flex w-full min-w-0 flex-col items-center text-center">
+              <h3 className={cn("mb-0.5 text-[0.625rem] font-bold tracking-[0.06em]", t.heading)}>
                 Redes sociais
               </h3>
-              <div className="flex min-h-9 w-full flex-row items-center justify-center gap-1.5">
+              <div className="flex w-full flex-row items-center justify-center gap-1.5">
                 <SocialIconButton href={whatsappHref} label={`WhatsApp ${getWhatsAppDisplay()}`} className={t.iconBtnMobile} mobile>
                   <FaWhatsapp className="h-5 w-5 shrink-0" aria-hidden />
                 </SocialIconButton>
@@ -275,20 +282,20 @@ export function SiteFooter({ theme }: SiteFooterProps) {
 
         {/* ── Desktop ── */}
         <div className="hidden md:block">
-          <div className="flex items-start justify-between gap-8 border-b border-white/10 py-8 lg:py-10">
+          <div className="flex items-start justify-between gap-6 border-b border-white/10 py-5 lg:py-6">
             <div className="max-w-xs">
               <Link href={theme === "kids" ? "/kids" : "/eventos"} aria-label="Ir para página inicial">
                 {theme === "eventos" ? <LogoEventos size="sm" /> : <LogoKids size="sm" />}
               </Link>
-              <p className="mt-4 text-sm leading-relaxed text-white/60">{t.tagline}</p>
+              <p className="mt-2.5 text-sm leading-relaxed text-white/60">{t.tagline}</p>
             </div>
 
-            <div className="grid min-h-[8.5rem] grid-cols-3 gap-6 lg:gap-10 xl:gap-14">
+            <div className="grid grid-cols-3 gap-5 lg:gap-8 xl:gap-10">
               <div className="flex min-w-0 flex-col items-center text-center">
-                <h3 className={cn("mb-2 min-h-9 flex items-center text-[0.6875rem] font-bold uppercase tracking-[0.14em]", t.heading)}>
+                <h3 className={cn("mb-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.14em]", t.heading)}>
                   Menu
                 </h3>
-                <nav className="flex flex-col items-center gap-1" aria-label="Rodapé">
+                <nav className="flex flex-col items-center gap-0.5" aria-label="Rodapé">
                   {links.map((link) => (
                     <NavItem
                       key={link.href + link.label}
@@ -303,11 +310,11 @@ export function SiteFooter({ theme }: SiteFooterProps) {
               </div>
 
               <div className="flex min-w-0 flex-col items-center text-center">
-                <h3 className={cn("mb-2 min-h-9 flex items-center text-[0.6875rem] font-bold uppercase tracking-[0.14em]", t.heading)}>
+                <h3 className={cn("mb-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.14em]", t.heading)}>
                   Localização
                 </h3>
-                <div className="flex flex-col items-center gap-1.5 pt-0.5">
-                  <MapPin className={cn("h-5 w-5", t.pin)} strokeWidth={2} aria-hidden />
+                <div className="flex flex-col items-center gap-1">
+                  <MapPin className={cn("h-4 w-4", t.pin)} strokeWidth={2} aria-hidden />
                   <p className="text-[0.8125rem] font-medium leading-snug text-white">
                     {ADDRESS.street}
                     <br />
@@ -315,7 +322,7 @@ export function SiteFooter({ theme }: SiteFooterProps) {
                       {ADDRESS.neighborhood} — {ADDRESS.city}, {ADDRESS.state}
                     </span>
                   </p>
-                  <div className="mt-0.5 flex items-center justify-center gap-2">
+                  <div className="mt-0.5 flex items-center justify-center gap-1.5">
                     <RouteIconButton
                       href={wazeUrl}
                       label="Abrir no Waze"
@@ -333,10 +340,10 @@ export function SiteFooter({ theme }: SiteFooterProps) {
               </div>
 
               <div className="flex min-w-0 flex-col items-center text-center">
-                <h3 className={cn("mb-2 min-h-9 flex items-center text-[0.6875rem] font-bold uppercase tracking-[0.06em]", t.heading)}>
+                <h3 className={cn("mb-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.06em]", t.heading)}>
                   Redes sociais
                 </h3>
-                <div className="flex items-center justify-center gap-2 pt-0.5">
+                <div className="flex items-center justify-center gap-1.5">
                   <SocialIconButton href={whatsappHref} label={`WhatsApp ${getWhatsAppDisplay()}`} className={t.socialBtn}>
                     <FaWhatsapp className="h-5 w-5" aria-hidden />
                   </SocialIconButton>
@@ -344,13 +351,13 @@ export function SiteFooter({ theme }: SiteFooterProps) {
                     <FaInstagram className="h-5 w-5" aria-hidden />
                   </SocialIconButton>
                 </div>
-                <p className="mt-3 text-xs text-white/55">{getWhatsAppDisplay()}</p>
+                <p className="mt-1.5 text-xs text-white/55">{getWhatsAppDisplay()}</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className={cn("border-t py-3 md:py-4", t.gridLine)}>
+        <div className={cn("border-t py-2 md:py-2.5", t.gridLine)}>
           <p className={cn("text-center text-[0.6875rem] leading-snug sm:text-xs", t.copyright)}>
             © {year} {t.copyrightName}. {DISCLAIMER_FOOTER}
           </p>
