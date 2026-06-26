@@ -7,6 +7,7 @@ import { LogoEventos } from "@/components/LogoEventos";
 import { LogoKids } from "@/components/LogoKids";
 import { IconWhatsapp } from "@/components/icons";
 import { DISCLAIMER_FOOTER } from "@/lib/site-legal";
+import { FooterCredits } from "@/components/shared/FooterCredits";
 import { SITE_FOOTER_ID, SITE_LOGO_LINK_CLASS } from "@/lib/brand";
 import { EVENTOS, KIDS, eventosWhatsApp, kidsWhatsApp } from "@/lib/site-copy";
 import {
@@ -441,6 +442,7 @@ export function SiteFooter({ theme }: SiteFooterProps) {
           <p className={cn("text-center text-[0.6875rem] leading-snug sm:text-xs", t.copyright)}>
             © {year} {t.copyrightName}. {DISCLAIMER_FOOTER}
           </p>
+          <FooterCredits theme={theme} />
         </div>
       </div>
     </footer>

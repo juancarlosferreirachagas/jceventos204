@@ -16,6 +16,17 @@ export const PROMO_LEGAL = {
 export const DISCLAIMER_FOOTER =
   "Fotos reais de eventos no espaço (@jceventos204). Estrutura, pacotes e valores confirmados na visita e na proposta.";
 
+export const SITE_CREDITS = {
+  developer: {
+    name: "Cultiva Solutions",
+    url: "https://www.cultivasolutions.com.br",
+    logoSrc: "/images/brand/cultiva-solutions-logo.png",
+    logoAlt: "Cultiva Solutions — sites e sistemas",
+    label: "Site desenvolvido por",
+  },
+  contentNote: "Textos e conteúdo: JC Eventos 204.",
+} as const;
+
 export const RESPONSE_SLA = {
   short: "Até 1 dia útil",
   label: "Retorno em até 1 dia útil em horário comercial",
