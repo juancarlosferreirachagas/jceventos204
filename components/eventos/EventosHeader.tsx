@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MapPin } from "lucide-react";
+import { HeaderBrandLink } from "@/components/shared/HeaderBrandLink";
 import { IconInstagram, IconWhatsapp } from "@/components/icons";
 import { LogoEventos } from "@/components/LogoEventos";
 import { EVENTOS, eventosWhatsApp } from "@/lib/site-copy";
@@ -16,12 +16,12 @@ const NAV = [
 
 export function EventosHeader() {
   return (
-    <header className="header-flyer sticky top-0 z-50">
+    <header id="site-header" className="header-flyer sticky top-0 z-50">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:h-[4.5rem] sm:px-6 lg:px-8">
         <div className="flex items-center gap-4">
-          <Link href="/eventos" aria-label={SITE_NAME}>
+          <HeaderBrandLink href="/eventos" label={SITE_NAME}>
             <LogoEventos size="sm" />
-          </Link>
+          </HeaderBrandLink>
           <Link
             href="/kids"
             className="hidden rounded-sm border border-jc-gold/30 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-jc-gold-light transition-colors hover:bg-jc-gold/10 lg:inline-block"

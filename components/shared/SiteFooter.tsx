@@ -5,7 +5,10 @@ import { MapPin } from "lucide-react";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { LogoEventos } from "@/components/LogoEventos";
 import { LogoKids } from "@/components/LogoKids";
+import { IconWhatsapp } from "@/components/icons";
 import { DISCLAIMER_FOOTER } from "@/lib/site-legal";
+import { SITE_FOOTER_ID, SITE_LOGO_LINK_CLASS } from "@/lib/brand";
+import { EVENTOS, KIDS, eventosWhatsApp, kidsWhatsApp } from "@/lib/site-copy";
 import {
   ADDRESS,
   getMapsUrl,
@@ -235,9 +238,11 @@ export function SiteFooter({ theme }: SiteFooterProps) {
   const wazeUrl = getWazeUrl();
   const mapsUrl = getMapsUrl();
   const whatsappHref = getWhatsAppHref();
+  const footerCta = theme === "kids" ? KIDS.footerCta : EVENTOS.footerCta;
+  const footerWa = theme === "kids" ? kidsWhatsApp() : eventosWhatsApp();
 
   return (
-    <footer id="rodape" className={t.shell}>
+    <footer id={SITE_FOOTER_ID} className={t.shell}>
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.04]"
         aria-hidden
@@ -251,11 +256,39 @@ export function SiteFooter({ theme }: SiteFooterProps) {
       <div className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-white/[0.03] blur-3xl" aria-hidden />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Faixa CTA — padrão Cultiva */}
+        <div className={cn("border-b py-8 sm:py-10", t.gridLine)}>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
+            <div className="max-w-lg text-center lg:text-left">
+              <p className={cn("text-overline", t.heading)}>{footerCta.eyebrow}</p>
+              <h2 className="mt-2 font-display text-2xl font-semibold leading-tight text-white sm:text-3xl">
+                {footerCta.title}
+              </h2>
+            </div>
+            <a
+              href={footerWa}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-2 rounded-sm px-5 py-3 text-sm font-bold transition-colors sm:text-base lg:w-auto",
+                theme === "kids" ? "bg-kids-yellow text-kids-blue-dark hover:bg-[#ffe033]" : "bg-cta-bar text-cta-text hover:bg-[#ffe033]",
+              )}
+            >
+              <IconWhatsapp size="sm" />
+              {footerCta.cta}
+            </a>
+          </div>
+        </div>
+
         {/* ── Mobile ── */}
         <div className="md:hidden">
-          <div className="flex justify-center pb-0.5 pt-2.5">
-            <Link href={theme === "kids" ? "/kids" : "/eventos"} aria-label="Ir para página inicial" className="rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current">
-              {theme === "eventos" ? <LogoEventos size="sm" className="items-center" /> : <LogoKids size="sm" className="items-center" />}
+          <div className="flex justify-center pb-1 pt-4">
+            <Link href={theme === "kids" ? "/kids" : "/eventos"} aria-label="Ir para página inicial" className={SITE_LOGO_LINK_CLASS}>
+              {theme === "eventos" ? (
+                <LogoEventos size="md" className="items-center [&_span]:text-center" />
+              ) : (
+                <LogoKids size="md" className="items-center [&_span]:text-center" />
+              )}
             </Link>
           </div>
 
@@ -332,8 +365,8 @@ export function SiteFooter({ theme }: SiteFooterProps) {
         <div className="hidden md:block">
           <div className="flex items-start justify-between gap-6 border-b border-white/10 py-5 lg:py-6">
             <div className="max-w-xs">
-              <Link href={theme === "kids" ? "/kids" : "/eventos"} aria-label="Ir para página inicial">
-                {theme === "eventos" ? <LogoEventos size="sm" /> : <LogoKids size="sm" />}
+              <Link href={theme === "kids" ? "/kids" : "/eventos"} aria-label="Ir para página inicial" className={SITE_LOGO_LINK_CLASS}>
+                {theme === "eventos" ? <LogoEventos size="md" /> : <LogoKids size="md" />}
               </Link>
               <p className="mt-2.5 text-sm leading-relaxed text-white/60">{t.tagline}</p>
             </div>

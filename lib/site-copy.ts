@@ -129,6 +129,11 @@ export const EVENTOS = {
     title: "Visite o espaço",
     subtitle: "Agende uma visita presencial e conheça o salão sem compromisso.",
   },
+  footerCta: {
+    eyebrow: "Visita sem compromisso",
+    title: "Conheça o salão antes de fechar a data",
+    cta: "Agendar visita no WhatsApp",
+  },
 } as const;
 
 /* ─── JC Kids (/kids) ─── */
@@ -219,6 +224,11 @@ export const KIDS = {
   contato: {
     title: "Agende uma visita",
     subtitle: "Traga a família, conheça o espaço e tire suas dúvidas antes de fechar a data.",
+  },
+  footerCta: {
+    eyebrow: "Visita Kids",
+    title: "Veja o espaço das festas ao vivo",
+    cta: "Agendar visita no WhatsApp",
   },
 } as const;
 

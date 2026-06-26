@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HeaderBrandLink } from "@/components/shared/HeaderBrandLink";
 import { IconInstagram, IconWhatsapp } from "@/components/icons";
 import { LogoKids } from "@/components/LogoKids";
 import { KIDS, kidsWhatsApp } from "@/lib/site-copy";
@@ -15,12 +16,12 @@ const NAV = [
 
 export function KidsHeader() {
   return (
-    <header className="header-kids sticky top-0 z-50">
+    <header id="site-header" className="header-kids sticky top-0 z-50">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:h-[4.5rem] sm:px-6 lg:px-8">
         <div className="flex items-center gap-4">
-          <Link href="/kids" aria-label="JC Kids">
+          <HeaderBrandLink href="/kids" label="JC Kids">
             <LogoKids size="sm" />
-          </Link>
+          </HeaderBrandLink>
           <Link href="/eventos" className="hidden rounded-full border border-white/30 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white hover:bg-white/10 lg:inline-block">
             ← Eventos
           </Link>
