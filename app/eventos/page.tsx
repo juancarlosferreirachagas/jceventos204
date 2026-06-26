@@ -15,7 +15,7 @@ export default function EventosPage() {
       <EventosServices />
       <AmenitiesStrip title={EVENTOS.amenities.title} items={EVENTOS.amenities.items} theme="eventos" />
       <EventosDiferenciais />
-      <Tour360Section title={EVENTOS.tour360.title} subtitle={EVENTOS.tour360.subtitle} theme="eventos" />
+      <Tour360Section {...EVENTOS.tour360} theme="eventos" />
       <GaleriaSection
         title={EVENTOS.galeria.title}
         subtitle={EVENTOS.galeria.subtitle}

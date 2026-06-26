@@ -12,7 +12,6 @@ import {
   getWhatsAppDisplay,
   getWhatsAppHref,
   getWazeUrl,
-  INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
   SITE_NAME,
 } from "@/lib/site";
@@ -130,12 +129,18 @@ function RouteIconButton({
       aria-label={label}
       className={cn(
         mobile
-          ? "inline-flex min-h-9 min-w-9 items-center justify-center p-0.5 opacity-95 transition-all duration-200 hover:-translate-y-0.5 hover:opacity-100 active:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+          ? "inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg p-1 opacity-95 transition-all duration-200 hover:-translate-y-0.5 hover:opacity-100 active:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
           : "flex h-10 w-10 items-center justify-center transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
         className,
       )}
     >
-      <Image src={src} alt="" width={20} height={20} className="h-5 w-5 object-contain" />
+      <Image
+        src={src}
+        alt=""
+        width={24}
+        height={24}
+        className={cn("object-contain", mobile ? "h-6 w-6" : "h-5 w-5")}
+      />
     </a>
   );
 }
@@ -161,7 +166,7 @@ function SocialIconButton({
       aria-label={label}
       className={cn(
         mobile
-          ? "inline-flex min-h-9 min-w-9 items-center justify-center p-0.5 opacity-95 transition-all duration-200 hover:-translate-y-0.5 hover:opacity-100 active:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+          ? "inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg p-1 opacity-95 transition-all duration-200 hover:-translate-y-0.5 hover:opacity-100 active:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
           : "flex h-10 w-10 items-center justify-center transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
         className,
       )}
@@ -185,59 +190,34 @@ function FooterSocialColumn({
   socialBtnClass: string;
 }) {
   const t = THEME[theme];
-  const textClass = compact
-    ? "mb-1 max-w-[9.5rem] text-[0.625rem] leading-snug text-white/75 sm:text-[0.6875rem]"
-    : "text-[0.8125rem] font-medium leading-snug text-white";
 
   return (
     <div className="flex w-full min-w-0 flex-col items-center text-center">
       <h3
         className={cn(
           "font-bold",
-          compact ? "mb-0.5 text-[0.625rem] tracking-[0.06em]" : "mb-1.5 text-[0.6875rem] uppercase tracking-[0.14em]",
+          compact ? "mb-1 text-[0.625rem] tracking-[0.06em]" : "mb-1.5 text-[0.6875rem] uppercase tracking-[0.14em]",
           t.heading,
         )}
       >
         Redes sociais
       </h3>
-      <div className={textClass}>
-        <a
-          href={whatsappHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block transition-opacity hover:opacity-100"
-        >
-          <span className={cn("font-semibold", compact ? "text-white/90" : "text-white")}>WhatsApp</span>
-          <br />
-          <span className={t.addressSub}>{getWhatsAppDisplay()}</span>
-        </a>
-        <a
-          href={INSTAGRAM_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-1 block transition-opacity hover:opacity-100"
-        >
-          <span className={cn("font-semibold", compact ? "text-white/90" : "text-white")}>Instagram</span>
-          <br />
-          <span className={t.addressSub}>{INSTAGRAM_HANDLE}</span>
-        </a>
-      </div>
-      <div className={cn("flex items-center justify-center gap-1.5", compact ? "w-full" : "mt-0.5")}>
+      <div className={cn("flex items-center justify-center gap-2", compact ? "w-full" : "mt-0.5")}>
         <SocialIconButton
           href={whatsappHref}
           label={`WhatsApp ${getWhatsAppDisplay()}`}
           className={compact ? iconBtnClass : socialBtnClass}
           mobile={compact}
         >
-          <FaWhatsapp className="h-5 w-5 shrink-0" aria-hidden />
+          <FaWhatsapp className={cn("shrink-0", compact ? "h-6 w-6" : "h-5 w-5")} aria-hidden />
         </SocialIconButton>
         <SocialIconButton
           href={INSTAGRAM_URL}
-          label={`Instagram ${INSTAGRAM_HANDLE}`}
+          label="Instagram @jceventos204"
           className={compact ? iconBtnClass : socialBtnClass}
           mobile={compact}
         >
-          <FaInstagram className="h-5 w-5 shrink-0" aria-hidden />
+          <FaInstagram className={cn("shrink-0", compact ? "h-6 w-6" : "h-5 w-5")} aria-hidden />
         </SocialIconButton>
       </div>
     </div>
@@ -317,7 +297,7 @@ export function SiteFooter({ theme }: SiteFooterProps) {
                 </span>
               </p>
               <div
-                className="flex w-full flex-row items-center justify-center gap-1.5"
+                className="flex w-full flex-row items-center justify-center gap-2"
                 role="group"
                 aria-label="Abrir rotas: Waze ou Google Maps"
               >

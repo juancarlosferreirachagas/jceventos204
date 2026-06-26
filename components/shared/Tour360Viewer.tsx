@@ -61,14 +61,14 @@ export function Tour360Viewer({ scene, theme = "eventos" }: Tour360ViewerProps) 
       />
 
       {ready && hintVisible && (
-        <div className="pointer-events-none absolute inset-x-0 bottom-4 z-10 flex justify-center px-4">
+        <div className="pointer-events-none absolute inset-x-0 bottom-5 z-10 flex justify-center px-4 animate-fade-in-up">
           <span
             className={cn(
-              "inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold shadow-lg backdrop-blur-sm transition-opacity",
-              theme === "kids" ? "bg-kids-cyan/90 text-white" : "bg-jc-black/80 text-jc-gold-light",
+              "inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-semibold shadow-xl backdrop-blur-md transition-opacity sm:text-sm",
+              theme === "kids" ? "bg-kids-cyan/95 text-white" : "bg-jc-black/85 text-jc-gold-light ring-1 ring-jc-gold/30",
             )}
           >
-            <Move className="h-4 w-4" aria-hidden />
+            <Move className="h-4 w-4 animate-tour-float" aria-hidden />
             {scene.hint}
           </span>
         </div>

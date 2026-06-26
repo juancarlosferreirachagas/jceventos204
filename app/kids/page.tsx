@@ -15,7 +15,7 @@ export default function KidsPage() {
       <KidsServices />
       <AmenitiesStrip title={KIDS.amenities.title} items={KIDS.amenities.items} theme="kids" />
       <KidsDiferenciais />
-      <Tour360Section title={KIDS.tour360.title} subtitle={KIDS.tour360.subtitle} theme="kids" />
+      <Tour360Section {...KIDS.tour360} theme="kids" />
       <GaleriaSection
         title={KIDS.galeria.title}
         subtitle={KIDS.galeria.subtitle}

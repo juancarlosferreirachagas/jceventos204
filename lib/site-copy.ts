@@ -118,8 +118,12 @@ export const EVENTOS = {
     items: MEDIA.eventos.galeria,
   },
   tour360: {
-    title: "Os ambientes do salão",
-    subtitle: "Salão, camarim, entrada, cozinha e frente — explore em 360° antes de agendar sua visita.",
+    eyebrow: "Tour virtual 360°",
+    title: "Entre no salão",
+    emphasis: "como se estivesse lá",
+    subtitle:
+      "Salão, camarim, entrada e cada detalhe em panorama imersivo — explore o espaço antes de agendar sua visita.",
+    badge: "7 ambientes reais",
   },
   contato: {
     title: "Visite o espaço",
@@ -205,8 +209,12 @@ export const KIDS = {
     items: MEDIA.kids.galeria,
   },
   tour360: {
-    title: "O espaço das festas",
-    subtitle: "Veja o salão Kids por dentro e planeje a festa com mais tranquilidade.",
+    eyebrow: "Tour virtual 360°",
+    title: "O mundo das festas",
+    emphasis: "na palma da mão",
+    subtitle:
+      "Salão Kids, cores e diversão em panorama completo — veja onde a alegria do seu filho vai acontecer.",
+    badge: "2 ambientes Kids",
   },
   contato: {
     title: "Agende uma visita",
