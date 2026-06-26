@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin } from "lucide-react";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { LogoEventos } from "@/components/LogoEventos";
 import { LogoKids } from "@/components/LogoKids";
@@ -52,9 +51,6 @@ const THEME = {
     navDesktop:
       "text-white/95 hover:text-jc-gold focus-visible:text-jc-gold border-transparent hover:border-jc-gold/60 focus-visible:border-jc-gold/60",
     heading: "text-jc-gold",
-    pin: "text-jc-gold-light",
-    addressSub: "text-white/78",
-    bodyText: "text-white/88",
     iconBtn:
       "rounded-xl bg-white/[0.08] border border-jc-gold/20 hover:bg-white/[0.14] hover:border-jc-gold/45 hover:shadow-[0_0_22px_rgba(201,162,39,0.18)] focus-visible:outline-jc-gold",
     iconBtnMobile:
@@ -76,9 +72,6 @@ const THEME = {
     navDesktop:
       "text-white hover:text-kids-yellow focus-visible:text-kids-yellow border-transparent hover:border-kids-cyan-light/70 focus-visible:border-kids-cyan-light/70",
     heading: "text-kids-yellow",
-    pin: "text-kids-cyan-light",
-    addressSub: "text-white/82",
-    bodyText: "text-white/92",
     iconBtn:
       "rounded-xl bg-white/[0.1] border border-white/20 hover:bg-white/[0.16] hover:border-kids-cyan-light/50 hover:shadow-[0_0_22px_rgba(0,180,230,0.22)] focus-visible:outline-kids-cyan",
     iconBtnMobile:
@@ -327,20 +320,13 @@ export function SiteFooter({ theme }: SiteFooterProps) {
 
           <div className="grid grid-cols-2 items-start gap-x-3 px-0.5 pb-2 pt-1">
             <div className="flex w-full min-w-0 flex-col items-center text-center">
-              <h3 className={cn("mb-0.5 text-[0.625rem] font-bold tracking-[0.06em]", t.heading)}>
+              <h3 className={cn("mb-1 text-[0.625rem] font-bold tracking-[0.06em]", t.heading)}>
                 Localização
               </h3>
-              <p className={cn("mb-1 max-w-[9.5rem] text-[0.625rem] leading-snug sm:text-[0.6875rem]", t.bodyText)}>
-                {ADDRESS.street}
-                <br />
-                <span className={t.addressSub}>
-                  {ADDRESS.neighborhood} — {ADDRESS.city}, {ADDRESS.state}
-                </span>
-              </p>
               <div
                 className="flex w-full flex-row items-center justify-center gap-2"
                 role="group"
-                aria-label="Abrir rotas: Waze ou Google Maps"
+                aria-label={`Abrir rotas: ${ADDRESS.full}`}
               >
                 <RouteIconButton
                   href={wazeUrl}
@@ -402,29 +388,23 @@ export function SiteFooter({ theme }: SiteFooterProps) {
                 <h3 className={cn("mb-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.14em]", t.heading)}>
                   Localização
                 </h3>
-                <div className="flex flex-col items-center gap-1">
-                  <MapPin className={cn("h-4 w-4", t.pin)} strokeWidth={2} aria-hidden />
-                  <p className="text-[0.8125rem] font-medium leading-snug text-white">
-                    {ADDRESS.street}
-                    <br />
-                    <span className={cn("font-normal", t.addressSub)}>
-                      {ADDRESS.neighborhood} — {ADDRESS.city}, {ADDRESS.state}
-                    </span>
-                  </p>
-                  <div className="mt-0.5 flex items-center justify-center gap-1.5">
-                    <RouteIconButton
-                      href={wazeUrl}
-                      label="Abrir no Waze"
-                      src="/images/brand/logowaze.png"
-                      className={t.iconBtn}
-                    />
-                    <RouteIconButton
-                      href={mapsUrl}
-                      label="Abrir no Google Maps"
-                      src="/images/brand/logo-googlemaps.png"
-                      className={t.iconBtn}
-                    />
-                  </div>
+                <div
+                  className="flex items-center justify-center gap-1.5"
+                  role="group"
+                  aria-label={`Abrir rotas: ${ADDRESS.full}`}
+                >
+                  <RouteIconButton
+                    href={wazeUrl}
+                    label="Abrir no Waze"
+                    src="/images/brand/logowaze.png"
+                    className={t.iconBtn}
+                  />
+                  <RouteIconButton
+                    href={mapsUrl}
+                    label="Abrir no Google Maps"
+                    src="/images/brand/logo-googlemaps.png"
+                    className={t.iconBtn}
+                  />
                 </div>
               </div>
 
