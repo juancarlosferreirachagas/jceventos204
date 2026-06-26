@@ -7,12 +7,12 @@ type FooterCreditsProps = {
 };
 
 export function FooterCredits({ theme = "eventos" }: FooterCreditsProps) {
-  const { developer, contentNote } = SITE_CREDITS;
+  const { developer } = SITE_CREDITS;
 
   return (
     <div
       className={cn(
-        "mt-3 flex flex-col items-center gap-2 text-center",
+        "flex flex-col items-center gap-2 text-center",
         theme === "kids" ? "text-white/55" : "text-white/48",
       )}
     >
@@ -37,7 +37,6 @@ export function FooterCredits({ theme = "eventos" }: FooterCreditsProps) {
           />
         </a>
       </div>
-      <p className="text-[0.625rem] leading-snug sm:text-[0.6875rem]">{contentNote}</p>
     </div>
   );
 }

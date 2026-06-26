@@ -5,7 +5,6 @@ import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { LogoEventos } from "@/components/LogoEventos";
 import { LogoKids } from "@/components/LogoKids";
 import { IconWhatsapp } from "@/components/icons";
-import { DISCLAIMER_FOOTER } from "@/lib/site-legal";
 import { FooterCredits } from "@/components/shared/FooterCredits";
 import { SITE_FOOTER_ID, SITE_LOGO_LINK_CLASS } from "@/lib/brand";
 import { EVENTOS, KIDS, eventosWhatsApp, kidsWhatsApp } from "@/lib/site-copy";
@@ -16,7 +15,6 @@ import {
   getWhatsAppHref,
   getWazeUrl,
   INSTAGRAM_URL,
-  SITE_NAME,
 } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -57,11 +55,9 @@ const THEME = {
       "rounded-lg bg-white/[0.08] border border-jc-gold/25 focus-visible:ring-jc-gold/50",
     socialBtn:
       "rounded-xl bg-white/[0.08] border border-jc-gold/20 hover:bg-white/[0.14] hover:border-jc-gold/45 hover:shadow-[0_0_22px_rgba(201,162,39,0.18)] focus-visible:outline-jc-gold text-jc-gold",
-    copyright: "text-white/58",
     gridLine: "border-white/12",
     tagline: "text-white/72",
     taglineText: "Salão de festas em Barueri — casamentos, debutantes, corporativo e aniversários.",
-    copyrightName: SITE_NAME,
   },
   kids: {
     shell: "relative overflow-hidden bg-kids-blue-dark text-white border-t-4 border-kids-yellow",
@@ -78,11 +74,9 @@ const THEME = {
       "rounded-lg bg-white/[0.1] border border-white/20 focus-visible:ring-kids-cyan/50",
     socialBtn:
       "rounded-xl bg-white/[0.1] border border-white/20 hover:bg-white/[0.16] hover:border-kids-cyan-light/50 hover:shadow-[0_0_22px_rgba(0,180,230,0.22)] focus-visible:outline-kids-cyan text-white",
-    copyright: "text-white/65",
     gridLine: "border-white/18",
     tagline: "text-white/78",
     taglineText: "Festas infantis em Barueri — aniversários, temas e brinquedoteca.",
-    copyrightName: "JC Kids — JC Eventos 204",
   },
 } as const;
 
@@ -230,7 +224,6 @@ type SiteFooterProps = {
 };
 
 export function SiteFooter({ theme }: SiteFooterProps) {
-  const year = new Date().getFullYear();
   const t = THEME[theme];
   const links = NAV[theme];
   const wazeUrl = getWazeUrl();
@@ -418,10 +411,7 @@ export function SiteFooter({ theme }: SiteFooterProps) {
           </div>
         </div>
 
-        <div className={cn("border-t py-2 md:py-2.5", t.gridLine)}>
-          <p className={cn("text-center text-[0.6875rem] leading-snug sm:text-xs", t.copyright)}>
-            © {year} {t.copyrightName}. {DISCLAIMER_FOOTER}
-          </p>
+        <div className={cn("border-t py-3 md:py-3.5", t.gridLine)}>
           <FooterCredits theme={theme} />
         </div>
       </div>

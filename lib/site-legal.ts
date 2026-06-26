@@ -24,7 +24,6 @@ export const SITE_CREDITS = {
     logoAlt: "Cultiva Solutions — sites e sistemas",
     label: "Site desenvolvido por",
   },
-  contentNote: "Textos e conteúdo: JC Eventos 204.",
 } as const;
 
 export const RESPONSE_SLA = {
