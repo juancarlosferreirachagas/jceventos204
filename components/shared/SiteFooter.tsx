@@ -43,47 +43,51 @@ const NAV: Record<FooterTheme, NavLink[]> = {
 
 const THEME = {
   eventos: {
-    shell:
-      "relative overflow-hidden bg-gradient-to-b from-[#141414] via-jc-black to-[#050505] text-white border-t border-jc-gold/20",
+    shell: "relative overflow-hidden bg-jc-black text-white border-t border-jc-gold/20",
     accent: "text-jc-gold",
     accentHover: "hover:text-jc-gold-light focus-visible:text-jc-gold-light",
-    navMobile: "text-white/85 hover:text-jc-gold focus-visible:text-jc-gold hover:bg-jc-gold/10",
-    navMobileDivider: "text-jc-gold/35",
+    navMobile: "text-white/90 hover:text-jc-gold focus-visible:text-jc-gold hover:bg-jc-gold/10",
+    navMobileDivider: "text-jc-gold/40",
     navDesktop:
-      "text-white/90 hover:text-jc-gold focus-visible:text-jc-gold border-transparent hover:border-jc-gold/60 focus-visible:border-jc-gold/60",
+      "text-white/95 hover:text-jc-gold focus-visible:text-jc-gold border-transparent hover:border-jc-gold/60 focus-visible:border-jc-gold/60",
     heading: "text-jc-gold",
     pin: "text-jc-gold-light",
-    addressSub: "text-white/65",
+    addressSub: "text-white/78",
+    bodyText: "text-white/88",
     iconBtn:
       "rounded-xl bg-white/[0.08] border border-jc-gold/20 hover:bg-white/[0.14] hover:border-jc-gold/45 hover:shadow-[0_0_22px_rgba(201,162,39,0.18)] focus-visible:outline-jc-gold",
-    iconBtnMobile: "focus-visible:ring-jc-gold/50",
+    iconBtnMobile:
+      "rounded-lg bg-white/[0.08] border border-jc-gold/25 focus-visible:ring-jc-gold/50",
     socialBtn:
       "rounded-xl bg-white/[0.08] border border-jc-gold/20 hover:bg-white/[0.14] hover:border-jc-gold/45 hover:shadow-[0_0_22px_rgba(201,162,39,0.18)] focus-visible:outline-jc-gold text-jc-gold",
-    copyright: "text-white/45",
-    gridLine: "border-white/10",
-    tagline: "Salão de festas em Barueri — casamentos, debutantes, corporativo e aniversários.",
+    copyright: "text-white/58",
+    gridLine: "border-white/12",
+    tagline: "text-white/72",
+    taglineText: "Salão de festas em Barueri — casamentos, debutantes, corporativo e aniversários.",
     copyrightName: SITE_NAME,
   },
   kids: {
-    shell:
-      "relative overflow-hidden bg-gradient-to-b from-kids-cyan/25 via-kids-blue-dark to-[#0f2344] text-white border-t-4 border-kids-yellow",
+    shell: "relative overflow-hidden bg-kids-blue-dark text-white border-t-4 border-kids-yellow",
     accent: "text-kids-yellow",
     accentHover: "hover:text-kids-cyan-light focus-visible:text-kids-cyan-light",
-    navMobile: "text-white/90 hover:text-kids-yellow focus-visible:text-kids-yellow hover:bg-white/10",
-    navMobileDivider: "text-white/30",
+    navMobile: "text-white/95 hover:text-kids-yellow focus-visible:text-kids-yellow hover:bg-white/10",
+    navMobileDivider: "text-white/35",
     navDesktop:
-      "text-white/95 hover:text-kids-yellow focus-visible:text-kids-yellow border-transparent hover:border-kids-cyan-light/70 focus-visible:border-kids-cyan-light/70",
+      "text-white hover:text-kids-yellow focus-visible:text-kids-yellow border-transparent hover:border-kids-cyan-light/70 focus-visible:border-kids-cyan-light/70",
     heading: "text-kids-yellow",
     pin: "text-kids-cyan-light",
-    addressSub: "text-white/75",
+    addressSub: "text-white/82",
+    bodyText: "text-white/92",
     iconBtn:
-      "rounded-xl bg-white/[0.09] border border-white/[0.14] hover:bg-white/[0.15] hover:border-kids-cyan-light/45 hover:shadow-[0_0_22px_rgba(0,180,230,0.22)] focus-visible:outline-kids-cyan",
-    iconBtnMobile: "focus-visible:ring-kids-cyan/50",
+      "rounded-xl bg-white/[0.1] border border-white/20 hover:bg-white/[0.16] hover:border-kids-cyan-light/50 hover:shadow-[0_0_22px_rgba(0,180,230,0.22)] focus-visible:outline-kids-cyan",
+    iconBtnMobile:
+      "rounded-lg bg-white/[0.1] border border-white/20 focus-visible:ring-kids-cyan/50",
     socialBtn:
-      "rounded-xl bg-white/[0.09] border border-white/[0.14] hover:bg-white/[0.15] hover:border-kids-cyan-light/45 hover:shadow-[0_0_22px_rgba(0,180,230,0.22)] focus-visible:outline-kids-cyan text-white",
-    copyright: "text-white/50",
-    gridLine: "border-white/15",
-    tagline: "Festas infantis em Barueri — aniversários, temas e brinquedoteca.",
+      "rounded-xl bg-white/[0.1] border border-white/20 hover:bg-white/[0.16] hover:border-kids-cyan-light/50 hover:shadow-[0_0_22px_rgba(0,180,230,0.22)] focus-visible:outline-kids-cyan text-white",
+    copyright: "text-white/65",
+    gridLine: "border-white/18",
+    tagline: "text-white/78",
+    taglineText: "Festas infantis em Barueri — aniversários, temas e brinquedoteca.",
     copyrightName: "JC Kids — JC Eventos 204",
   },
 } as const;
@@ -243,17 +247,20 @@ export function SiteFooter({ theme }: SiteFooterProps) {
 
   return (
     <footer id={SITE_FOOTER_ID} className={t.shell}>
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
-        aria-hidden
-        style={{
-          backgroundImage:
-            "linear-gradient(90deg, rgba(255,255,255,.35) 1px, transparent 1px), linear-gradient(rgba(255,255,255,.35) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-        }}
-      />
-      <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/[0.04] blur-3xl" aria-hidden />
-      <div className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-white/[0.03] blur-3xl" aria-hidden />
+      {theme === "eventos" && (
+        <>
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.035]"
+            aria-hidden
+            style={{
+              backgroundImage:
+                "linear-gradient(90deg, rgba(255,255,255,.35) 1px, transparent 1px), linear-gradient(rgba(255,255,255,.35) 1px, transparent 1px)",
+              backgroundSize: "56px 56px",
+            }}
+          />
+          <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/[0.03] blur-3xl" aria-hidden />
+        </>
+      )}
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Faixa CTA — padrão Cultiva */}
@@ -322,7 +329,7 @@ export function SiteFooter({ theme }: SiteFooterProps) {
               <h3 className={cn("mb-0.5 text-[0.625rem] font-bold tracking-[0.06em]", t.heading)}>
                 Localização
               </h3>
-              <p className="mb-1 max-w-[9.5rem] text-[0.625rem] leading-snug text-white/75 sm:text-[0.6875rem]">
+              <p className={cn("mb-1 max-w-[9.5rem] text-[0.625rem] leading-snug sm:text-[0.6875rem]", t.bodyText)}>
                 {ADDRESS.street}
                 <br />
                 <span className={t.addressSub}>
@@ -368,7 +375,7 @@ export function SiteFooter({ theme }: SiteFooterProps) {
               <Link href={theme === "kids" ? "/kids" : "/eventos"} aria-label="Ir para página inicial" className={SITE_LOGO_LINK_CLASS}>
                 {theme === "eventos" ? <LogoEventos size="md" /> : <LogoKids size="md" />}
               </Link>
-              <p className="mt-2.5 text-sm leading-relaxed text-white/60">{t.tagline}</p>
+              <p className={cn("mt-2.5 text-sm leading-relaxed", t.tagline)}>{t.taglineText}</p>
             </div>
 
             <div className="grid grid-cols-3 gap-5 lg:gap-8 xl:gap-10">
