@@ -105,10 +105,10 @@ export const EVENTOS = {
     title: "Diferenciais",
     subtitle: "Por que escolher o JC Eventos 204",
     items: [
-      { title: "Localização em Barueri", description: "Av. Diretriz, 204 — Jd. Mutinga, fácil acesso na região." },
+      { title: "Localização em Barueri", description: "Fácil acesso na região — rotas pelo Waze ou Google Maps no rodapé." },
       { title: "Salão versátil", description: "Layout adaptável para casamentos, 15 anos, confraternizações e festas de aniversário." },
       { title: "Estrutura completa", description: "Iluminação, área para buffet e montagem de decoração — consulte o que está incluso na proposta." },
-      { title: "Atendimento próximo", description: "Visita agendada para você conhecer o espaço antes de fechar — sem compromisso." },
+      { title: "Atendimento próximo", description: "Equipe disponível para tirar dúvidas e montar proposta conforme seu evento." },
     ],
   },
   galeria: {
@@ -122,17 +122,12 @@ export const EVENTOS = {
     title: "Entre no salão",
     emphasis: "como se estivesse lá",
     subtitle:
-      "Salão, camarim, entrada e cada detalhe em panorama imersivo — explore o espaço antes de agendar sua visita.",
+      "Salão, camarim, entrada e cada detalhe em panorama imersivo — explore o espaço por dentro.",
     badge: "7 ambientes reais",
   },
   contato: {
-    title: "Visite o espaço",
-    subtitle: "Agende uma visita presencial e conheça o salão sem compromisso.",
-  },
-  footerCta: {
-    eyebrow: "Visita sem compromisso",
-    title: "Conheça o salão antes de fechar a data",
-    cta: "Agendar visita no WhatsApp",
+    title: "Fale com a gente",
+    subtitle: "WhatsApp, Instagram ou rotas até o salão — respondemos em até 1 dia útil.",
   },
 } as const;
 
@@ -222,13 +217,8 @@ export const KIDS = {
     badge: "2 ambientes Kids",
   },
   contato: {
-    title: "Agende uma visita",
-    subtitle: "Traga a família, conheça o espaço e tire suas dúvidas antes de fechar a data.",
-  },
-  footerCta: {
-    eyebrow: "Visita Kids",
-    title: "Veja o espaço das festas ao vivo",
-    cta: "Agendar visita no WhatsApp",
+    title: "Fale com a gente",
+    subtitle: "WhatsApp, Instagram ou rotas até o salão — respondemos em até 1 dia útil.",
   },
 } as const;
 

@@ -1,14 +1,12 @@
-import { MapPin } from "lucide-react";
+import Image from "next/image";
 import { IconInstagram, IconWhatsapp } from "@/components/icons";
-import { CtaButton } from "@/components/shared/CtaButton";
-import { CtaBar } from "@/components/shared/CtaBar";
 import {
   ADDRESS,
   getMapsUrl,
-  getWhatsAppDisplay,
-  INSTAGRAM_HANDLE,
+  getWazeUrl,
   INSTAGRAM_URL,
 } from "@/lib/site";
+import { RESPONSE_SLA } from "@/lib/site-legal";
 import { eventosWhatsApp, kidsWhatsApp } from "@/lib/site-copy";
 import { cn } from "@/lib/utils";
 
@@ -19,48 +17,71 @@ type ContatoSectionProps = {
 };
 
 export function ContatoSection({ title, subtitle, theme = "eventos" }: ContatoSectionProps) {
-  const wa = theme === "kids" ? kidsWhatsApp() : eventosWhatsApp();
+  const whatsappHref = theme === "kids" ? kidsWhatsApp() : eventosWhatsApp();
 
   return (
     <section id="contato">
       <div className={cn("py-12 lg:py-16", theme === "kids" ? "bg-white" : "bg-jc-black")}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className={cn("text-sm font-bold uppercase tracking-widest", theme === "kids" ? "text-kids-cyan" : "text-jc-gold")}>Contato</p>
-          <h2 className={cn("mt-2 font-display text-3xl font-bold sm:text-4xl", theme === "kids" ? "text-kids-blue-dark" : "text-white")}>{title}</h2>
-          <p className={cn("mt-3 max-w-xl", theme === "kids" ? "text-kids-blue-dark/70" : "text-white/65")}>{subtitle}</p>
+          <p className={cn("text-sm font-bold uppercase tracking-widest", theme === "kids" ? "text-kids-cyan" : "text-jc-gold")}>
+            Contato
+          </p>
+          <h2 className={cn("mt-2 font-display text-3xl font-bold sm:text-4xl", theme === "kids" ? "text-kids-blue-dark" : "text-white")}>
+            {title}
+          </h2>
+          <p className={cn("mt-3 max-w-lg text-sm sm:text-base", theme === "kids" ? "text-kids-blue-dark/70" : "text-white/65")}>
+            {subtitle}
+          </p>
 
-          <div className="mt-8 max-w-xl">
-            <div className={cn("space-y-3 rounded-2xl border p-5 sm:p-6", theme === "kids" ? "border-kids-cyan/20 bg-sky-50" : "border-white/10 bg-white/5")}>
-              <ContactRow href={wa} theme={theme} icon={<IconWhatsapp size="md" />} label="WhatsApp" value={getWhatsAppDisplay()} />
-              <ContactRow href={INSTAGRAM_URL} theme={theme} icon={<IconInstagram size="md" />} label="Instagram" value={INSTAGRAM_HANDLE} />
-              <ContactRow href={getMapsUrl()} theme={theme} icon={<MapPin className="h-5 w-5" />} label="Endereço" value={ADDRESS.full} />
-              <CtaButton href={wa} theme={theme} className="mt-3 w-full sm:w-auto">
-                Agendar visita no WhatsApp
-              </CtaButton>
-            </div>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
+            <ContactIcon href={whatsappHref} label="WhatsApp" theme={theme}>
+              <IconWhatsapp size="lg" className="text-white" />
+            </ContactIcon>
+            <ContactIcon href={INSTAGRAM_URL} label="Instagram @jceventos204" theme={theme}>
+              <IconInstagram size="lg" />
+            </ContactIcon>
+            <ContactIcon href={getWazeUrl()} label={`Waze — ${ADDRESS.full}`} theme={theme}>
+              <Image src="/images/brand/logowaze.png" alt="" width={24} height={24} className="h-6 w-6 object-contain" />
+            </ContactIcon>
+            <ContactIcon href={getMapsUrl()} label={`Google Maps — ${ADDRESS.street}`} theme={theme}>
+              <Image src="/images/brand/logo-googlemaps.png" alt="" width={24} height={24} className="h-6 w-6 object-contain" />
+            </ContactIcon>
           </div>
+
+          <p className={cn("mt-5 text-sm", theme === "kids" ? "text-kids-blue-dark/60" : "text-white/50")}>
+            {ADDRESS.full} · {RESPONSE_SLA.short}
+          </p>
         </div>
       </div>
-      <CtaBar theme={theme} />
     </section>
   );
 }
 
-function ContactRow({ href, icon, label, value, theme }: { href: string; icon: React.ReactNode; label: string; value: string; theme: "eventos" | "kids" }) {
+function ContactIcon({
+  href,
+  label,
+  theme,
+  children,
+}: {
+  href: string;
+  label: string;
+  theme: "eventos" | "kids";
+  children: React.ReactNode;
+}) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={cn("flex items-start gap-4 transition-colors", theme === "kids" ? "text-kids-blue-dark hover:text-kids-cyan" : "text-white hover:text-jc-gold")}
+      aria-label={label}
+      className={cn(
+        "inline-flex h-12 w-12 items-center justify-center rounded-xl border transition-all hover:-translate-y-0.5 sm:h-14 sm:w-14",
+        theme === "kids"
+          ? "border-kids-cyan/25 bg-sky-50 text-kids-blue-dark hover:border-kids-cyan/50 hover:shadow-md hover:shadow-kids-cyan/15"
+          : "border-jc-gold/25 bg-white/[0.06] text-jc-gold hover:border-jc-gold/45 hover:shadow-md hover:shadow-jc-gold/10",
+      )}
     >
-      <span className={cn("flex h-11 w-11 shrink-0 items-center justify-center rounded-full", theme === "kids" ? "bg-kids-cyan/15 text-kids-cyan" : "bg-jc-gold/10 text-jc-gold")}>
-        {icon}
-      </span>
-      <div>
-        <p className={cn("text-xs", theme === "kids" ? "text-kids-blue-dark/50" : "text-white/50")}>{label}</p>
-        <p className="font-semibold leading-snug">{value}</p>
-      </div>
+      {children}
     </a>
   );
 }

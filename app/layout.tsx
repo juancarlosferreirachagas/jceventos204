@@ -1,34 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, DM_Sans, Fredoka, Nunito } from "next/font/google";
+import { Montserrat, Nunito } from "next/font/google";
 import { OrganizationJsonLd } from "@/components/OrganizationJsonLd";
 import { PromoBanner } from "@/components/shared/PromoBanner";
 import { getSiteUrl, SITE_NAME } from "@/lib/site";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  display: "swap",
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const fredoka = Fredoka({
-  variable: "--font-fredoka",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
   display: "swap",
 });
 
 const nunito = Nunito({
   variable: "--font-nunito",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -54,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${cormorant.variable} ${dmSans.variable} ${fredoka.variable} ${nunito.variable} h-full`}
+      className={`${montserrat.variable} ${nunito.variable} h-full`}
     >
       <head>
         <OrganizationJsonLd />
