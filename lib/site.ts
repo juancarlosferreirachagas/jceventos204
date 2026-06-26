@@ -47,3 +47,8 @@ export const ADDRESS = {
 export function getMapsUrl(): string {
   return "https://www.google.com/maps/place/JC+Eventos+204/@-23.497911,-46.8121644,17z/data=!3m1!4b1!4m6!3m5!1s0x94ceff4f4eec8451:0x32d504f55a440d13!8m2!3d-23.497911!4d-46.8121644!16s%2Fg%2F11t3yv2gq2";
 }
+
+export function getWazeUrl(): string {
+  const q = `${ADDRESS.street}, ${ADDRESS.neighborhood}, ${ADDRESS.city} - ${ADDRESS.state}, Brasil`;
+  return `https://waze.com/ul?q=${encodeURIComponent(q)}&navigate=yes`;
+}

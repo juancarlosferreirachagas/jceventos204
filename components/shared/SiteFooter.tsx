@@ -1,0 +1,361 @@
+import type { ReactNode } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { MapPin } from "lucide-react";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { LogoEventos } from "@/components/LogoEventos";
+import { LogoKids } from "@/components/LogoKids";
+import { DISCLAIMER_FOOTER } from "@/lib/site-legal";
+import {
+  ADDRESS,
+  getMapsUrl,
+  getWhatsAppDisplay,
+  getWhatsAppHref,
+  getWazeUrl,
+  INSTAGRAM_URL,
+  SITE_NAME,
+} from "@/lib/site";
+import { cn } from "@/lib/utils";
+
+type FooterTheme = "eventos" | "kids";
+
+type NavLink = { href: string; label: string; external?: boolean };
+
+const NAV: Record<FooterTheme, NavLink[]> = {
+  eventos: [
+    { href: "/", label: "Início" },
+    { href: "/kids", label: "JC Kids" },
+    { href: "#servicos", label: "Serviços" },
+    { href: "#tour-360", label: "Tour" },
+    { href: "#contato", label: "Contato" },
+  ],
+  kids: [
+    { href: "/", label: "Início" },
+    { href: "/eventos", label: "Eventos 204" },
+    { href: "#servicos", label: "Pacotes" },
+    { href: "#tour-360", label: "Tour" },
+    { href: "#contato", label: "Contato" },
+  ],
+};
+
+const THEME = {
+  eventos: {
+    shell:
+      "relative overflow-hidden bg-gradient-to-b from-[#141414] via-jc-black to-[#050505] text-white border-t border-jc-gold/20",
+    accent: "text-jc-gold",
+    accentHover: "hover:text-jc-gold-light focus-visible:text-jc-gold-light",
+    navMobile: "text-white/85 hover:text-jc-gold focus-visible:text-jc-gold hover:bg-jc-gold/10",
+    navMobileDivider: "text-jc-gold/35",
+    navDesktop:
+      "text-white/90 hover:text-jc-gold focus-visible:text-jc-gold border-transparent hover:border-jc-gold/60 focus-visible:border-jc-gold/60",
+    heading: "text-jc-gold",
+    pin: "text-jc-gold-light",
+    addressSub: "text-white/65",
+    iconBtn:
+      "rounded-xl bg-white/[0.08] border border-jc-gold/20 hover:bg-white/[0.14] hover:border-jc-gold/45 hover:shadow-[0_0_22px_rgba(201,162,39,0.18)] focus-visible:outline-jc-gold",
+    iconBtnMobile: "focus-visible:ring-jc-gold/50",
+    socialBtn:
+      "rounded-xl bg-white/[0.08] border border-jc-gold/20 hover:bg-white/[0.14] hover:border-jc-gold/45 hover:shadow-[0_0_22px_rgba(201,162,39,0.18)] focus-visible:outline-jc-gold text-jc-gold",
+    copyright: "text-white/45",
+    gridLine: "border-white/10",
+    tagline: "Salão de festas em Barueri — casamentos, debutantes, corporativo e aniversários.",
+    copyrightName: SITE_NAME,
+  },
+  kids: {
+    shell:
+      "relative overflow-hidden bg-gradient-to-b from-kids-cyan/25 via-kids-blue-dark to-[#0f2344] text-white border-t-4 border-kids-yellow",
+    accent: "text-kids-yellow",
+    accentHover: "hover:text-kids-cyan-light focus-visible:text-kids-cyan-light",
+    navMobile: "text-white/90 hover:text-kids-yellow focus-visible:text-kids-yellow hover:bg-white/10",
+    navMobileDivider: "text-white/30",
+    navDesktop:
+      "text-white/95 hover:text-kids-yellow focus-visible:text-kids-yellow border-transparent hover:border-kids-cyan-light/70 focus-visible:border-kids-cyan-light/70",
+    heading: "text-kids-yellow",
+    pin: "text-kids-cyan-light",
+    addressSub: "text-white/75",
+    iconBtn:
+      "rounded-xl bg-white/[0.09] border border-white/[0.14] hover:bg-white/[0.15] hover:border-kids-cyan-light/45 hover:shadow-[0_0_22px_rgba(0,180,230,0.22)] focus-visible:outline-kids-cyan",
+    iconBtnMobile: "focus-visible:ring-kids-cyan/50",
+    socialBtn:
+      "rounded-xl bg-white/[0.09] border border-white/[0.14] hover:bg-white/[0.15] hover:border-kids-cyan-light/45 hover:shadow-[0_0_22px_rgba(0,180,230,0.22)] focus-visible:outline-kids-cyan text-white",
+    copyright: "text-white/50",
+    gridLine: "border-white/15",
+    tagline: "Festas infantis em Barueri — aniversários, temas e brinquedoteca.",
+    copyrightName: "JC Kids — JC Eventos 204",
+  },
+} as const;
+
+function NavItem({ link, className }: { link: NavLink; className: string }) {
+  if (link.external) {
+    return (
+      <a href={link.href} target="_blank" rel="noopener noreferrer" className={className}>
+        {link.label}
+      </a>
+    );
+  }
+  if (link.href.startsWith("#")) {
+    return (
+      <a href={link.href} className={className}>
+        {link.label}
+      </a>
+    );
+  }
+  return (
+    <Link href={link.href} className={className}>
+      {link.label}
+    </Link>
+  );
+}
+
+function RouteIconButton({
+  href,
+  label,
+  src,
+  className,
+  mobile,
+}: {
+  href: string;
+  label: string;
+  src: string;
+  className: string;
+  mobile?: boolean;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      title={label}
+      aria-label={label}
+      className={cn(
+        mobile
+          ? "inline-flex min-h-9 min-w-9 items-center justify-center p-0.5 opacity-95 transition-all duration-200 hover:-translate-y-0.5 hover:opacity-100 active:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+          : "flex h-10 w-10 items-center justify-center transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+        className,
+      )}
+    >
+      <Image src={src} alt="" width={20} height={20} className="h-5 w-5 object-contain" />
+    </a>
+  );
+}
+
+function SocialIconButton({
+  href,
+  label,
+  className,
+  mobile,
+  children,
+}: {
+  href: string;
+  label: string;
+  className: string;
+  mobile?: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className={cn(
+        mobile
+          ? "inline-flex min-h-9 min-w-9 items-center justify-center p-0.5 opacity-95 transition-all duration-200 hover:-translate-y-0.5 hover:opacity-100 active:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+          : "flex h-10 w-10 items-center justify-center transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+        className,
+      )}
+    >
+      {children}
+    </a>
+  );
+}
+
+type SiteFooterProps = {
+  theme: FooterTheme;
+};
+
+export function SiteFooter({ theme }: SiteFooterProps) {
+  const year = new Date().getFullYear();
+  const t = THEME[theme];
+  const links = NAV[theme];
+  const wazeUrl = getWazeUrl();
+  const mapsUrl = getMapsUrl();
+  const whatsappHref = getWhatsAppHref();
+
+  return (
+    <footer id="rodape" className={t.shell}>
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.04]"
+        aria-hidden
+        style={{
+          backgroundImage:
+            "linear-gradient(90deg, rgba(255,255,255,.35) 1px, transparent 1px), linear-gradient(rgba(255,255,255,.35) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+        }}
+      />
+      <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/[0.04] blur-3xl" aria-hidden />
+      <div className="pointer-events-none absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-white/[0.03] blur-3xl" aria-hidden />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* ── Mobile ── */}
+        <div className="md:hidden">
+          <div className="flex justify-center pb-1 pt-4">
+            <Link href={theme === "kids" ? "/kids" : "/eventos"} aria-label="Ir para página inicial" className="rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current">
+              {theme === "eventos" ? <LogoEventos size="sm" className="items-center" /> : <LogoKids size="sm" className="items-center" />}
+            </Link>
+          </div>
+
+          <nav
+            className="scrollbar-hide w-full overflow-x-auto overscroll-x-contain py-1"
+            aria-label="Rodapé"
+          >
+            <div className="mx-auto flex w-max flex-nowrap items-center justify-center gap-0 py-0.5">
+              {links.map((link, i) => (
+                <span key={link.href + link.label} className="inline-flex shrink-0 items-center">
+                  {i > 0 && (
+                    <span className={cn("select-none px-0.5 text-[0.5625rem]", t.navMobileDivider)} aria-hidden>
+                      |
+                    </span>
+                  )}
+                  <NavItem
+                    link={link}
+                    className={cn(
+                      "inline-flex shrink-0 whitespace-nowrap rounded px-1 py-0.5 text-center text-[0.625rem] font-semibold leading-tight transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:text-[0.6875rem]",
+                      t.navMobile,
+                      t.iconBtnMobile,
+                    )}
+                  />
+                </span>
+              ))}
+            </div>
+          </nav>
+
+          <div className="grid grid-cols-2 items-start gap-x-3 px-0.5 pb-3 pt-1">
+            <div className="flex w-full min-w-0 flex-col items-center gap-0 py-0.5 text-center">
+              <h3 className={cn("mb-1 flex min-h-6 w-full items-center justify-center text-[0.625rem] font-bold tracking-[0.06em]", t.heading)}>
+                Localização
+              </h3>
+              <div
+                className="flex min-h-9 w-full flex-row items-center justify-center gap-1.5"
+                role="group"
+                aria-label="Abrir rotas: Waze ou Google Maps"
+              >
+                <RouteIconButton
+                  href={wazeUrl}
+                  label={`Abrir endereço no Waze: ${ADDRESS.full}`}
+                  src="/images/brand/logowaze.png"
+                  className={t.iconBtnMobile}
+                  mobile
+                />
+                <RouteIconButton
+                  href={mapsUrl}
+                  label={`Abrir endereço no Google Maps: ${ADDRESS.street}`}
+                  src="/images/brand/logo-googlemaps.png"
+                  className={t.iconBtnMobile}
+                  mobile
+                />
+              </div>
+            </div>
+
+            <div className="flex w-full min-w-0 flex-col items-center gap-0 py-0.5 text-center">
+              <h3 className={cn("mb-1 flex min-h-6 w-full items-center justify-center text-[0.625rem] font-bold tracking-[0.06em]", t.heading)}>
+                Redes sociais
+              </h3>
+              <div className="flex min-h-9 w-full flex-row items-center justify-center gap-1.5">
+                <SocialIconButton href={whatsappHref} label={`WhatsApp ${getWhatsAppDisplay()}`} className={t.iconBtnMobile} mobile>
+                  <FaWhatsapp className="h-5 w-5 shrink-0" aria-hidden />
+                </SocialIconButton>
+                <SocialIconButton href={INSTAGRAM_URL} label="Instagram @jceventos204" className={t.iconBtnMobile} mobile>
+                  <FaInstagram className="h-5 w-5 shrink-0" aria-hidden />
+                </SocialIconButton>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Desktop ── */}
+        <div className="hidden md:block">
+          <div className="flex items-start justify-between gap-8 border-b border-white/10 py-8 lg:py-10">
+            <div className="max-w-xs">
+              <Link href={theme === "kids" ? "/kids" : "/eventos"} aria-label="Ir para página inicial">
+                {theme === "eventos" ? <LogoEventos size="sm" /> : <LogoKids size="sm" />}
+              </Link>
+              <p className="mt-4 text-sm leading-relaxed text-white/60">{t.tagline}</p>
+            </div>
+
+            <div className="grid min-h-[8.5rem] grid-cols-3 gap-6 lg:gap-10 xl:gap-14">
+              <div className="flex min-w-0 flex-col items-center text-center">
+                <h3 className={cn("mb-2 min-h-9 flex items-center text-[0.6875rem] font-bold uppercase tracking-[0.14em]", t.heading)}>
+                  Menu
+                </h3>
+                <nav className="flex flex-col items-center gap-1" aria-label="Rodapé">
+                  {links.map((link) => (
+                    <NavItem
+                      key={link.href + link.label}
+                      link={link}
+                      className={cn(
+                        "group inline-flex border-b pb-0.5 text-[0.8125rem] font-medium leading-snug transition-colors duration-200",
+                        t.navDesktop,
+                      )}
+                    />
+                  ))}
+                </nav>
+              </div>
+
+              <div className="flex min-w-0 flex-col items-center text-center">
+                <h3 className={cn("mb-2 min-h-9 flex items-center text-[0.6875rem] font-bold uppercase tracking-[0.14em]", t.heading)}>
+                  Localização
+                </h3>
+                <div className="flex flex-col items-center gap-1.5 pt-0.5">
+                  <MapPin className={cn("h-5 w-5", t.pin)} strokeWidth={2} aria-hidden />
+                  <p className="text-[0.8125rem] font-medium leading-snug text-white">
+                    {ADDRESS.street}
+                    <br />
+                    <span className={cn("font-normal", t.addressSub)}>
+                      {ADDRESS.neighborhood} — {ADDRESS.city}, {ADDRESS.state}
+                    </span>
+                  </p>
+                  <div className="mt-0.5 flex items-center justify-center gap-2">
+                    <RouteIconButton
+                      href={wazeUrl}
+                      label="Abrir no Waze"
+                      src="/images/brand/logowaze.png"
+                      className={t.iconBtn}
+                    />
+                    <RouteIconButton
+                      href={mapsUrl}
+                      label="Abrir no Google Maps"
+                      src="/images/brand/logo-googlemaps.png"
+                      className={t.iconBtn}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex min-w-0 flex-col items-center text-center">
+                <h3 className={cn("mb-2 min-h-9 flex items-center text-[0.6875rem] font-bold uppercase tracking-[0.06em]", t.heading)}>
+                  Redes sociais
+                </h3>
+                <div className="flex items-center justify-center gap-2 pt-0.5">
+                  <SocialIconButton href={whatsappHref} label={`WhatsApp ${getWhatsAppDisplay()}`} className={t.socialBtn}>
+                    <FaWhatsapp className="h-5 w-5" aria-hidden />
+                  </SocialIconButton>
+                  <SocialIconButton href={INSTAGRAM_URL} label="Instagram @jceventos204" className={t.socialBtn}>
+                    <FaInstagram className="h-5 w-5" aria-hidden />
+                  </SocialIconButton>
+                </div>
+                <p className="mt-3 text-xs text-white/55">{getWhatsAppDisplay()}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={cn("border-t py-3 md:py-4", t.gridLine)}>
+          <p className={cn("text-center text-[0.6875rem] leading-snug sm:text-xs", t.copyright)}>
+            © {year} {t.copyrightName}. {DISCLAIMER_FOOTER}
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
