@@ -1,0 +1,307 @@
+import { MEDIA_PATHS } from "@/lib/media/paths";
+import type { GalleryItem, MediaImage } from "@/lib/media/types";
+
+const P = MEDIA_PATHS;
+
+/** Imagens com alt e crop — use nos componentes via .src / .position */
+export const MEDIA = {
+  eventos: {
+    hero: {
+      src: P.eventos.hero,
+      alt: "Salão decorado para eventos no JC Eventos 204 — Barueri",
+      position: "object-[center_30%]",
+    } satisfies MediaImage,
+
+    servicos: {
+      casamento: {
+        src: P.eventos.servicos.casamento,
+        alt: "Recepção de casamento no salão JC Eventos 204",
+        position: "object-[center_35%]",
+      },
+      debutante: {
+        src: P.eventos.servicos.debutante,
+        alt: "Festa de 15 anos no JC Eventos 204",
+        position: "object-center",
+      },
+      corporativo: {
+        src: P.eventos.servicos.corporativo,
+        alt: "Celebração no espaço JC Eventos 204",
+        position: "object-center",
+      },
+      aniversario: {
+        src: P.eventos.servicos.aniversario,
+        alt: "Festa de aniversário no JC Eventos 204",
+        position: "object-center",
+      },
+    },
+
+    galeria: [
+      {
+        id: "ev-casamento-01",
+        src: P.eventos.galeria.casamento01,
+        alt: "Recepção de casamento no salão",
+        category: "Casamentos",
+        className: "col-span-2 row-span-2",
+        position: "object-[center_35%]",
+      },
+      {
+        id: "ev-casamento-02",
+        src: P.eventos.galeria.casamento02,
+        alt: "Salão decorado para casamento",
+        category: "Casamentos",
+        className: "col-span-1 row-span-1",
+        position: "object-[center_40%]",
+      },
+      {
+        id: "ev-casamento-03",
+        src: P.eventos.galeria.casamento03,
+        alt: "Detalhes da decoração de casamento",
+        category: "Casamentos",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "ev-casamento-04",
+        src: P.eventos.galeria.casamento04,
+        alt: "Mesa e ambiente da festa de casamento",
+        category: "Casamentos",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "ev-casamento-05",
+        src: P.eventos.galeria.casamento05,
+        alt: "Celebração pós-cerimônia no salão",
+        category: "Casamentos",
+        className: "col-span-2 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "ev-casamento-06",
+        src: P.eventos.galeria.casamento06,
+        alt: "Convidados na recepção de casamento",
+        category: "Casamentos",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "ev-debutante-01",
+        src: P.eventos.galeria.debutante01,
+        alt: "Festa de 15 anos da Marina",
+        category: "Debutantes",
+        className: "col-span-2 row-span-2",
+        position: "object-center",
+      },
+      {
+        id: "ev-debutante-02",
+        src: P.eventos.galeria.debutante02,
+        alt: "Decoração de debutante no salão",
+        category: "Debutantes",
+        className: "col-span-1 row-span-1",
+        position: "object-[20%_30%]",
+      },
+      {
+        id: "ev-debutante-03",
+        src: P.eventos.galeria.debutante03,
+        alt: "Debutante no JC Eventos 204",
+        category: "Debutantes",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "ev-casamento-07",
+        src: P.eventos.galeria.casamento07,
+        alt: "Pista e iluminação do casamento",
+        category: "Casamentos",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "ev-corporativo-01",
+        src: P.eventos.galeria.corporativo01,
+        alt: "Celebração de 91 anos no espaço",
+        category: "Corporativo",
+        className: "col-span-2 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "ev-aniversario-01",
+        src: P.eventos.galeria.aniversario01,
+        alt: "Festa de aniversário no salão",
+        category: "Aniversários",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "ev-debutante-04",
+        src: P.eventos.galeria.debutante04,
+        alt: "Mesa e decoração de 15 anos",
+        category: "Debutantes",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "ev-casamento-08",
+        src: P.eventos.galeria.casamento08,
+        alt: "Ambiente iluminado para casamento",
+        category: "Casamentos",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "ev-aniversario-02",
+        src: P.eventos.galeria.aniversario02,
+        alt: "Confraternização no JC Eventos 204",
+        category: "Aniversários",
+        className: "col-span-2 row-span-1",
+        position: "object-center",
+      },
+    ] as const satisfies readonly GalleryItem[],
+  },
+
+  kids: {
+    hero: {
+      src: P.kids.hero,
+      alt: "Festa infantil temática no JC Kids — Barueri",
+      position: "object-[center_45%]",
+    } satisfies MediaImage,
+
+    servicos: {
+      aniversarioInfantil: {
+        src: P.kids.servicos.aniversarioInfantil,
+        alt: "Aniversário infantil temático no JC Kids",
+        position: "object-center",
+      },
+      festaTematica: {
+        src: P.kids.servicos.festaTematica,
+        alt: "Decoração temática no JC Kids",
+        position: "object-center",
+      },
+      brinquedoteca: {
+        src: P.kids.servicos.brinquedoteca,
+        alt: "Espaço decorado para festa infantil no JC Kids",
+        position: "object-center",
+      },
+    },
+
+    galeria: [
+      {
+        id: "kd-aniversario-01",
+        src: P.kids.galeria.aniversario01,
+        alt: "Festa de 1 ano no JC Kids",
+        category: "Aniversário",
+        className: "col-span-2 row-span-2",
+        position: "object-center",
+      },
+      {
+        id: "kd-tematica-01",
+        src: P.kids.galeria.tematica01,
+        alt: "Festa temática boiadeira",
+        category: "Temática",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "kd-aniversario-02",
+        src: P.kids.galeria.aniversario02,
+        alt: "Decoração de aniversário infantil",
+        category: "Aniversário",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "kd-tematica-02",
+        src: P.kids.galeria.tematica02,
+        alt: "Cenário temático infantil",
+        category: "Temática",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "kd-aniversario-03",
+        src: P.kids.galeria.aniversario03,
+        alt: "Mesa do bolo infantil",
+        category: "Aniversário",
+        className: "col-span-2 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "kd-tematica-03",
+        src: P.kids.galeria.tematica03,
+        alt: "Decoração boiadeira no salão",
+        category: "Temática",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "kd-tematica-04",
+        src: P.kids.galeria.tematica04,
+        alt: "Festa temática 7 anos",
+        category: "Temática",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "kd-tematica-05",
+        src: P.kids.galeria.tematica05,
+        alt: "Festa temática infantil colorida",
+        category: "Temática",
+        className: "col-span-2 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "kd-aniversario-04",
+        src: P.kids.galeria.aniversario04,
+        alt: "Salão decorado para festa infantil",
+        category: "Aniversário",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "kd-brinquedoteca-01",
+        src: P.kids.galeria.brinquedoteca01,
+        alt: "Área decorada para recreação infantil",
+        category: "Brinquedoteca",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "kd-aniversario-05",
+        src: P.kids.galeria.aniversario05,
+        alt: "Convidados na festa infantil",
+        category: "Aniversário",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "kd-aniversario-06",
+        src: P.kids.galeria.aniversario06,
+        alt: "Detalhes da festa de 1 ano",
+        category: "Aniversário",
+        className: "col-span-2 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "kd-brinquedoteca-02",
+        src: P.kids.galeria.brinquedoteca02,
+        alt: "Área de recreação infantil",
+        category: "Brinquedoteca",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+      {
+        id: "kd-brinquedoteca-03",
+        src: P.kids.galeria.brinquedoteca03,
+        alt: "Espaço Kids decorado",
+        category: "Brinquedoteca",
+        className: "col-span-1 row-span-1",
+        position: "object-center",
+      },
+    ] as const satisfies readonly GalleryItem[],
+  },
+} as const;
+
+export const OG_IMAGES = {
+  eventos: MEDIA.eventos.hero.src,
+  kids: MEDIA.kids.hero.src,
+} as const;

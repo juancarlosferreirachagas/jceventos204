@@ -1,26 +1,121 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ═══ Tema Eventos (flyer preto + dourado) ═══ */
+:root,
+[data-theme="eventos"] {
+  --jc-black: #0a0a0a;
+  --jc-gold: #c9a227;
+  --jc-gold-light: #e8c547;
+  --jc-gold-dark: #a8841f;
+  --jc-text-on-dark: #ffffff;
+  --jc-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  --cta-bar: #ffd700;
+  --cta-text: #0a0a0a;
+  --theme-bg: #0a0a0a;
+  --theme-fg: #ffffff;
+  --theme-accent: var(--jc-gold);
+  --theme-accent-light: var(--jc-gold-light);
+  --theme-muted: rgba(255, 255, 255, 0.65);
+  --theme-card: rgba(255, 255, 255, 0.05);
+  --theme-border: rgba(201, 162, 39, 0.25);
+}
+
+/* ═══ Tema Kids (flyer ciano + azul + amarelo) ═══ */
+[data-theme="kids"] {
+  --kids-cyan: #00b4e6;
+  --kids-cyan-light: #5ccfef;
+  --kids-blue-dark: #1a3a6b;
+  --kids-yellow: #ffd700;
+  --kids-k: #ffd700;
+  --kids-i: #4caf50;
+  --kids-d: #2196f3;
+  --kids-s: #e53935;
+  --cta-bar: #ffd700;
+  --cta-text: #1a3a6b;
+  --theme-bg: #f0f9ff;
+  --theme-fg: #1a3a6b;
+  --theme-accent: var(--kids-cyan);
+  --theme-accent-light: var(--kids-yellow);
+  --theme-muted: rgba(26, 58, 107, 0.7);
+  --theme-card: #ffffff;
+  --theme-border: rgba(0, 180, 230, 0.3);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-jc-black: #0a0a0a;
+  --color-jc-gold: #c9a227;
+  --color-jc-gold-light: #e8c547;
+  --color-jc-gold-dark: #a8841f;
+  --color-jc-text-on-dark: #ffffff;
+  --color-kids-cyan: #00b4e6;
+  --color-kids-cyan-light: #5ccfef;
+  --color-kids-blue-dark: #1a3a6b;
+  --color-kids-yellow: #ffd700;
+  --color-cta-bar: #ffd700;
+  --color-cta-text: #0a0a0a;
+  --font-sans: var(--font-montserrat);
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-kids: var(--font-baloo), cursive;
+  --font-kids-body: var(--font-nunito), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--theme-bg);
+  color: var(--theme-fg);
+  font-family: var(--font-montserrat), system-ui, sans-serif;
+}
+
+[data-theme="kids"] body,
+[data-theme="kids"] {
+  font-family: var(--font-nunito), system-ui, sans-serif;
+}
+
+.text-gold-gradient {
+  background: linear-gradient(160deg, #a8841f 0%, #c9a227 45%, #e8c547 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.header-flyer {
+  background: linear-gradient(180deg, #0a0a0a 0%, #0a0a0a 90%, #111 100%);
+  border-bottom: 2px solid;
+  border-image: linear-gradient(90deg, transparent, #a8841f, #e8c547, #a8841f, transparent) 1;
+}
+
+.header-kids {
+  background: linear-gradient(135deg, #00b4e6 0%, #1a3a6b 100%);
+  border-bottom: 4px solid #ffd700;
+}
+
+.text-flyer-headline {
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out both;
+}
+
+@keyframes slide-down {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-promo-in {
+  animation: slide-down 0.5s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-fade-in-up, .animate-promo-in { animation: none; }
 }
