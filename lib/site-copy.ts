@@ -117,9 +117,13 @@ export const EVENTOS = {
     filters: ["Todos", "Casamentos", "Debutantes", "Corporativo", "Aniversários"] as const,
     items: MEDIA.eventos.galeria,
   },
+  tour360: {
+    title: "Os ambientes do salão",
+    subtitle: "Salão, camarim, entrada, cozinha e frente — explore em 360° antes de agendar sua visita.",
+  },
   contato: {
     title: "Visite o espaço",
-    subtitle: "Agende uma visita e veja o salão pessoalmente — sem compromisso.",
+    subtitle: "Agende uma visita presencial e conheça o salão sem compromisso.",
   },
 } as const;
 
@@ -200,9 +204,13 @@ export const KIDS = {
     filters: ["Todos", "Aniversário", "Temática", "Brinquedoteca"] as const,
     items: MEDIA.kids.galeria,
   },
+  tour360: {
+    title: "O espaço das festas",
+    subtitle: "Veja o salão Kids por dentro e planeje a festa com mais tranquilidade.",
+  },
   contato: {
     title: "Agende uma visita",
-    subtitle: "Conheça o espaço Kids com sua família antes de fechar a data.",
+    subtitle: "Traga a família, conheça o espaço e tire suas dúvidas antes de fechar a data.",
   },
 } as const;
 

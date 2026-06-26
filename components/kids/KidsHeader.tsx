@@ -7,6 +7,7 @@ import { INSTAGRAM_URL } from "@/lib/site";
 const NAV = [
   { href: "#servicos", label: "Pacotes" },
   { href: "#diferenciais", label: "Diferenciais" },
+  { href: "#tour-360", label: "Tour" },
   { href: "#galeria", label: "Galeria" },
   { href: "#avaliacoes", label: "Avaliações" },
   { href: "#contato", label: "Contato" },
@@ -15,7 +16,7 @@ const NAV = [
 export function KidsHeader() {
   return (
     <header className="header-kids sticky top-0 z-50">
-      <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:h-[4.5rem] sm:px-6 lg:px-8">
         <div className="flex items-center gap-4">
           <Link href="/kids" aria-label="JC Kids">
             <LogoKids size="sm" />
@@ -41,7 +42,7 @@ export function KidsHeader() {
             href={kidsWhatsApp()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-kids-yellow px-3 py-2 text-xs font-bold text-kids-blue-dark sm:px-4 sm:text-sm"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-kids-yellow px-3.5 py-2.5 text-xs font-bold text-kids-blue-dark sm:px-4 sm:text-sm"
           >
             <IconWhatsapp size="sm" />
             <span className="hidden sm:inline">{KIDS.hero.cta}</span>
@@ -50,9 +51,13 @@ export function KidsHeader() {
         </div>
       </div>
 
-      <nav className="flex gap-1 overflow-x-auto border-t border-white/15 bg-kids-blue-dark/50 px-4 py-2 lg:hidden">
+      <nav className="flex gap-1.5 overflow-x-auto border-t border-white/15 bg-kids-blue-dark/50 px-3 py-2.5 scrollbar-hide lg:hidden">
         {NAV.map((item) => (
-          <a key={item.href} href={item.href} className="shrink-0 rounded-full px-3 py-1.5 text-xs font-bold text-white/80 hover:text-kids-yellow">
+          <a
+            key={item.href}
+            href={item.href}
+            className="shrink-0 snap-start rounded-full px-3 py-2 text-xs font-bold text-white/85 hover:text-kids-yellow"
+          >
             {item.label}
           </a>
         ))}

@@ -1,26 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Montserrat, Baloo_2, Nunito } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans, Fredoka, Nunito } from "next/font/google";
 import { OrganizationJsonLd } from "@/components/OrganizationJsonLd";
 import { PromoBanner } from "@/components/shared/PromoBanner";
 import { getSiteUrl, SITE_NAME } from "@/lib/site";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["500", "600", "700"],
   display: "swap",
 });
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const baloo = Baloo_2({
-  variable: "--font-baloo",
+const fredoka = Fredoka({
+  variable: "--font-fredoka",
   subsets: ["latin"],
-  weight: ["600", "700"],
+  weight: ["500", "600", "700"],
   display: "swap",
 });
 
@@ -52,7 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${playfair.variable} ${montserrat.variable} ${baloo.variable} ${nunito.variable} h-full`}
+      className={`${cormorant.variable} ${dmSans.variable} ${fredoka.variable} ${nunito.variable} h-full`}
     >
       <head>
         <OrganizationJsonLd />

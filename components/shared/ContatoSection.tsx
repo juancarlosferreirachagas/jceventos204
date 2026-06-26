@@ -2,6 +2,7 @@ import { MapPin } from "lucide-react";
 import { IconInstagram, IconWhatsapp } from "@/components/icons";
 import { CtaButton } from "@/components/shared/CtaButton";
 import { CtaBar } from "@/components/shared/CtaBar";
+import { LocationMapTabs } from "@/components/shared/LocationMapTabs";
 import {
   ADDRESS,
   getMapsUrl,
@@ -38,15 +39,7 @@ export function ContatoSection({ title, subtitle, theme = "eventos" }: ContatoSe
                 Agendar visita no WhatsApp
               </CtaButton>
             </div>
-            <div className={cn("overflow-hidden rounded-2xl border", theme === "kids" ? "border-kids-cyan/20" : "border-white/10")}>
-              <iframe
-                title="Localização JC Eventos 204"
-                src={`https://maps.google.com/maps?q=${encodeURIComponent(ADDRESS.full)}&output=embed`}
-                className="h-full min-h-[280px] w-full"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
+            <LocationMapTabs theme={theme} />
           </div>
         </div>
       </div>

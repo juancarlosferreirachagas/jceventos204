@@ -4,6 +4,7 @@ import { AmenitiesStrip } from "@/components/shared/AmenitiesStrip";
 import { EventosDiferenciais } from "@/components/eventos/EventosDiferenciais";
 import { GaleriaSection } from "@/components/shared/GaleriaSection";
 import { ReviewsSection } from "@/components/shared/ReviewsSection";
+import { Tour360Section } from "@/components/shared/Tour360Section";
 import { ContatoSection } from "@/components/shared/ContatoSection";
 import { EVENTOS } from "@/lib/site-copy";
 
@@ -14,6 +15,7 @@ export default function EventosPage() {
       <EventosServices />
       <AmenitiesStrip title={EVENTOS.amenities.title} items={EVENTOS.amenities.items} theme="eventos" />
       <EventosDiferenciais />
+      <Tour360Section title={EVENTOS.tour360.title} subtitle={EVENTOS.tour360.subtitle} theme="eventos" />
       <GaleriaSection
         title={EVENTOS.galeria.title}
         subtitle={EVENTOS.galeria.subtitle}
