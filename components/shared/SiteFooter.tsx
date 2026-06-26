@@ -12,6 +12,7 @@ import {
   getWhatsAppDisplay,
   getWhatsAppHref,
   getWazeUrl,
+  INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
   SITE_NAME,
 } from "@/lib/site";
@@ -170,6 +171,79 @@ function SocialIconButton({
   );
 }
 
+function FooterSocialColumn({
+  theme,
+  compact,
+  whatsappHref,
+  iconBtnClass,
+  socialBtnClass,
+}: {
+  theme: FooterTheme;
+  compact?: boolean;
+  whatsappHref: string;
+  iconBtnClass: string;
+  socialBtnClass: string;
+}) {
+  const t = THEME[theme];
+  const textClass = compact
+    ? "mb-1 max-w-[9.5rem] text-[0.625rem] leading-snug text-white/75 sm:text-[0.6875rem]"
+    : "text-[0.8125rem] font-medium leading-snug text-white";
+
+  return (
+    <div className="flex w-full min-w-0 flex-col items-center text-center">
+      <h3
+        className={cn(
+          "font-bold",
+          compact ? "mb-0.5 text-[0.625rem] tracking-[0.06em]" : "mb-1.5 text-[0.6875rem] uppercase tracking-[0.14em]",
+          t.heading,
+        )}
+      >
+        Redes sociais
+      </h3>
+      <div className={textClass}>
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block transition-opacity hover:opacity-100"
+        >
+          <span className={cn("font-semibold", compact ? "text-white/90" : "text-white")}>WhatsApp</span>
+          <br />
+          <span className={t.addressSub}>{getWhatsAppDisplay()}</span>
+        </a>
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-1 block transition-opacity hover:opacity-100"
+        >
+          <span className={cn("font-semibold", compact ? "text-white/90" : "text-white")}>Instagram</span>
+          <br />
+          <span className={t.addressSub}>{INSTAGRAM_HANDLE}</span>
+        </a>
+      </div>
+      <div className={cn("flex items-center justify-center gap-1.5", compact ? "w-full" : "mt-0.5")}>
+        <SocialIconButton
+          href={whatsappHref}
+          label={`WhatsApp ${getWhatsAppDisplay()}`}
+          className={compact ? iconBtnClass : socialBtnClass}
+          mobile={compact}
+        >
+          <FaWhatsapp className="h-5 w-5 shrink-0" aria-hidden />
+        </SocialIconButton>
+        <SocialIconButton
+          href={INSTAGRAM_URL}
+          label={`Instagram ${INSTAGRAM_HANDLE}`}
+          className={compact ? iconBtnClass : socialBtnClass}
+          mobile={compact}
+        >
+          <FaInstagram className="h-5 w-5 shrink-0" aria-hidden />
+        </SocialIconButton>
+      </div>
+    </div>
+  );
+}
+
 type SiteFooterProps = {
   theme: FooterTheme;
 };
@@ -264,19 +338,13 @@ export function SiteFooter({ theme }: SiteFooterProps) {
               </div>
             </div>
 
-            <div className="flex w-full min-w-0 flex-col items-center text-center">
-              <h3 className={cn("mb-0.5 text-[0.625rem] font-bold tracking-[0.06em]", t.heading)}>
-                Redes sociais
-              </h3>
-              <div className="flex w-full flex-row items-center justify-center gap-1.5">
-                <SocialIconButton href={whatsappHref} label={`WhatsApp ${getWhatsAppDisplay()}`} className={t.iconBtnMobile} mobile>
-                  <FaWhatsapp className="h-5 w-5 shrink-0" aria-hidden />
-                </SocialIconButton>
-                <SocialIconButton href={INSTAGRAM_URL} label="Instagram @jceventos204" className={t.iconBtnMobile} mobile>
-                  <FaInstagram className="h-5 w-5 shrink-0" aria-hidden />
-                </SocialIconButton>
-              </div>
-            </div>
+            <FooterSocialColumn
+              theme={theme}
+              compact
+              whatsappHref={whatsappHref}
+              iconBtnClass={t.iconBtnMobile}
+              socialBtnClass={t.socialBtn}
+            />
           </div>
         </div>
 
@@ -339,20 +407,12 @@ export function SiteFooter({ theme }: SiteFooterProps) {
                 </div>
               </div>
 
-              <div className="flex min-w-0 flex-col items-center text-center">
-                <h3 className={cn("mb-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.06em]", t.heading)}>
-                  Redes sociais
-                </h3>
-                <div className="flex items-center justify-center gap-1.5">
-                  <SocialIconButton href={whatsappHref} label={`WhatsApp ${getWhatsAppDisplay()}`} className={t.socialBtn}>
-                    <FaWhatsapp className="h-5 w-5" aria-hidden />
-                  </SocialIconButton>
-                  <SocialIconButton href={INSTAGRAM_URL} label="Instagram @jceventos204" className={t.socialBtn}>
-                    <FaInstagram className="h-5 w-5" aria-hidden />
-                  </SocialIconButton>
-                </div>
-                <p className="mt-1.5 text-xs text-white/55">{getWhatsAppDisplay()}</p>
-              </div>
+              <FooterSocialColumn
+                theme={theme}
+                whatsappHref={whatsappHref}
+                iconBtnClass={t.iconBtnMobile}
+                socialBtnClass={t.socialBtn}
+              />
             </div>
           </div>
         </div>
