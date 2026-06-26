@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { KidsHeader } from "@/components/kids/KidsHeader";
 import { KidsFooter } from "@/components/kids/KidsFooter";
 import { PromoBanner } from "@/components/shared/PromoBanner";
+import { SectorPageEnter } from "@/components/shared/SectorPageEnter";
 import { WhatsAppFloat } from "@/components/shared/WhatsAppFloat";
 import { KIDS } from "@/lib/site-copy";
 import { OG_IMAGES } from "@/lib/media";
@@ -21,7 +22,9 @@ export default function KidsLayout({ children }: { children: React.ReactNode }) 
     <div data-theme="kids" className="min-h-screen bg-sky-50">
       <PromoBanner theme="kids" />
       <KidsHeader />
-      <main>{children}</main>
+      <main>
+        <SectorPageEnter sector="kids">{children}</SectorPageEnter>
+      </main>
       <KidsFooter />
       <WhatsAppFloat theme="kids" />
     </div>

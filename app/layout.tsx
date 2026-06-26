@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Casamentos, debutantes, corporativo e festas infantis JC Kids em Barueri — SP.",
+      "Casamentos, debutantes, corporativo e festas infantis no JC Kids 204 — Barueri, SP.",
   metadataBase: new URL(getSiteUrl()),
 };
 

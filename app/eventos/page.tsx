@@ -1,20 +1,21 @@
 import { EventosHero } from "@/components/eventos/EventosHero";
 import { EventosServices } from "@/components/eventos/EventosServices";
-import { AmenitiesStrip } from "@/components/shared/AmenitiesStrip";
-import { EventosDiferenciais } from "@/components/eventos/EventosDiferenciais";
+import { DiferenciaisSection } from "@/components/shared/DiferenciaisSection";
+import { EstruturaSection } from "@/components/shared/EstruturaSection";
 import { GaleriaSection } from "@/components/shared/GaleriaSection";
+import { FaqSection } from "@/components/shared/FaqSection";
 import { ReviewsSection } from "@/components/shared/ReviewsSection";
 import { Tour360Section } from "@/components/shared/Tour360Section";
-import { ContatoSection } from "@/components/shared/ContatoSection";
 import { EVENTOS } from "@/lib/site-copy";
+import { EVENTOS_FAQ } from "@/lib/site-faq";
 
 export default function EventosPage() {
+  const { diferenciais } = EVENTOS;
+
   return (
     <>
       <EventosHero />
       <EventosServices />
-      <AmenitiesStrip title={EVENTOS.amenities.title} items={EVENTOS.amenities.items} theme="eventos" />
-      <EventosDiferenciais />
       <Tour360Section {...EVENTOS.tour360} theme="eventos" />
       <GaleriaSection
         title={EVENTOS.galeria.title}
@@ -23,8 +24,15 @@ export default function EventosPage() {
         items={EVENTOS.galeria.items}
         theme="eventos"
       />
+      <EstruturaSection data={EVENTOS.estrutura} theme="eventos" />
+      <DiferenciaisSection
+        title={diferenciais.title}
+        subtitle={diferenciais.subtitle}
+        items={diferenciais.items}
+        theme="eventos"
+      />
+      <FaqSection items={EVENTOS_FAQ} theme="eventos" />
       <ReviewsSection theme="eventos" />
-      <ContatoSection title={EVENTOS.contato.title} subtitle={EVENTOS.contato.subtitle} theme="eventos" />
     </>
   );
 }

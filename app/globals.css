@@ -8,8 +8,8 @@
   --jc-gold-light: #e8c547;
   --jc-gold-dark: #a8841f;
   --jc-text-on-dark: #ffffff;
-  --jc-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-  --cta-bar: #ffd700;
+  --jc-text-shadow: none;
+  --cta-bar: #c9a227;
   --cta-text: #0a0a0a;
   --theme-bg: #0a0a0a;
   --theme-fg: #ffffff;
@@ -25,12 +25,12 @@
   --kids-cyan: #00b4e6;
   --kids-cyan-light: #5ccfef;
   --kids-blue-dark: #1a3a6b;
-  --kids-yellow: #ffd700;
-  --kids-k: #ffd700;
-  --kids-i: #4caf50;
-  --kids-d: #2196f3;
-  --kids-s: #e53935;
-  --cta-bar: #ffd700;
+  --kids-yellow: #c9a227;
+  --kids-k: #c9a227;
+  --kids-i: #c9a227;
+  --kids-d: #c9a227;
+  --kids-s: #c9a227;
+  --cta-bar: #c9a227;
   --cta-text: #1a3a6b;
   --theme-bg: #f0f9ff;
   --theme-fg: #1a3a6b;
@@ -50,8 +50,8 @@
   --color-kids-cyan: #00b4e6;
   --color-kids-cyan-light: #5ccfef;
   --color-kids-blue-dark: #1a3a6b;
-  --color-kids-yellow: #ffd700;
-  --color-cta-bar: #ffd700;
+  --color-kids-yellow: #c9a227;
+  --color-cta-bar: #c9a227;
   --color-cta-text: #0a0a0a;
   --font-sans: var(--font-montserrat), system-ui, sans-serif;
   --font-display: var(--font-montserrat), system-ui, sans-serif;
@@ -67,8 +67,53 @@
   }
 }
 
+/** Scroll horizontal suave — menu mobile, tour, galeria */
+@utility scroll-fluid-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  scroll-padding-inline: 1rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility snap-fluid {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+/** Padding vertical padrão das seções — mais compacto que antes */
+@utility section-py {
+  scroll-margin-top: 5rem;
+  padding-block: 2.5rem;
+  @media (width >= 640px) {
+    padding-block: 3rem;
+  }
+  @media (width >= 1024px) {
+    padding-block: 3.5rem;
+  }
+}
+
+@utility content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 480px;
+}
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+@media (width >= 1280px) {
+  html {
+    scroll-padding-top: 4.5rem;
+  }
 }
 
 body {
@@ -85,26 +130,22 @@ body {
 }
 
 .text-gold-gradient {
-  background: linear-gradient(160deg, #a8841f 0%, #c9a227 45%, #e8c547 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--jc-gold);
 }
 
 .header-flyer {
   background: linear-gradient(180deg, #0a0a0a 0%, #0a0a0a 90%, #111 100%);
   border-bottom: 2px solid;
-  border-image: linear-gradient(90deg, transparent, #a8841f, #e8c547, #a8841f, transparent) 1;
+  border-image: linear-gradient(90deg, transparent, #a8841f, #c9a227, #a8841f, transparent) 1;
 }
 
 .header-kids {
   background: linear-gradient(135deg, #00b4e6 0%, #1a3a6b 100%);
-  border-bottom: 4px solid #ffd700;
+  border-bottom: 3px solid var(--jc-gold);
 }
 
 .text-flyer-headline {
   color: #fff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .text-overline {
@@ -115,12 +156,12 @@ body {
 }
 
 @keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out both;
+  animation: fade-in-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes slide-down {
@@ -160,13 +201,59 @@ body {
 }
 
 .tour-title-shimmer {
-  background-size: 200% auto;
-  animation: tour-shimmer 8s linear infinite;
+  /* legado — sem efeito 3D */
 }
 
-@keyframes tour-shimmer {
-  from { background-position: 200% center; }
-  to { background-position: -200% center; }
+/* Entrada suave ao trocar de setor */
+@keyframes sector-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sector-page-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.sector-page-enter--visible {
+  animation: sector-page-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* View Transition API — fade entre Eventos ↔ Kids */
+@keyframes sector-vt-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sector-vt-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: sector-vt-out 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+  }
+
+  ::view-transition-new(root) {
+    animation: sector-vt-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -174,4 +261,6 @@ body {
   .animate-fade-in-up, .animate-promo-in { animation: none; }
   .animate-promo-marquee { animation: none; }
   .animate-tour-glow, .animate-tour-float, .tour-title-shimmer { animation: none; }
+  .sector-page-enter, .sector-page-enter--visible { animation: none; opacity: 1; transform: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
 }

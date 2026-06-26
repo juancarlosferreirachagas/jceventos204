@@ -2,10 +2,12 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { IconWhatsapp } from "@/components/icons";
 import { LogoEventos } from "@/components/LogoEventos";
 import { LogoKids } from "@/components/LogoKids";
 import { FooterCredits } from "@/components/shared/FooterCredits";
 import { SITE_FOOTER_ID, SITE_LOGO_LINK_CLASS } from "@/lib/brand";
+import { EVENTOS, KIDS, eventosWhatsApp, kidsWhatsApp } from "@/lib/site-copy";
 import {
   ADDRESS,
   getMapsUrl,
@@ -23,9 +25,14 @@ type NavLink = { href: string; label: string; external?: boolean };
 const NAV: Record<FooterTheme, NavLink[]> = {
   eventos: [
     { href: "/", label: "Início" },
-    { href: "/kids", label: "JC Kids" },
+    { href: "/kids", label: "JC Kids 204" },
     { href: "#servicos", label: "Serviços" },
     { href: "#tour-360", label: "Tour" },
+    { href: "#galeria", label: "Galeria" },
+    { href: "#estrutura", label: "Estrutura" },
+    { href: "#diferenciais", label: "Diferenciais" },
+    { href: "#faq", label: "FAQ" },
+    { href: "#avaliacoes", label: "Avaliações" },
     { href: "#contato", label: "Contato" },
   ],
   kids: [
@@ -33,6 +40,11 @@ const NAV: Record<FooterTheme, NavLink[]> = {
     { href: "/eventos", label: "Eventos 204" },
     { href: "#servicos", label: "Pacotes" },
     { href: "#tour-360", label: "Tour" },
+    { href: "#galeria", label: "Galeria" },
+    { href: "#estrutura", label: "Estrutura" },
+    { href: "#diferenciais", label: "Diferenciais" },
+    { href: "#faq", label: "FAQ" },
+    { href: "#avaliacoes", label: "Avaliações" },
     { href: "#contato", label: "Contato" },
   ],
 };
@@ -74,7 +86,7 @@ const THEME = {
       "rounded-xl bg-white/[0.1] border border-white/20 hover:bg-white/[0.16] hover:border-kids-cyan-light/50 hover:shadow-[0_0_22px_rgba(0,180,230,0.22)] focus-visible:outline-kids-cyan text-white",
     gridLine: "border-white/18",
     tagline: "text-white/78",
-    taglineText: "Festas infantis em Barueri — aniversários, temas e brinquedoteca.",
+    taglineText: "JC Kids 204 — festas infantis em Barueri com estrutura completa.",
   },
 } as const;
 
@@ -227,6 +239,8 @@ export function SiteFooter({ theme }: SiteFooterProps) {
   const wazeUrl = getWazeUrl();
   const mapsUrl = getMapsUrl();
   const whatsappHref = getWhatsAppHref();
+  const contato = theme === "kids" ? KIDS.contato : EVENTOS.contato;
+  const contatoWa = theme === "kids" ? kidsWhatsApp() : eventosWhatsApp();
 
   return (
     <footer id={SITE_FOOTER_ID} className={t.shell}>
@@ -246,10 +260,35 @@ export function SiteFooter({ theme }: SiteFooterProps) {
       )}
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div id="contato" className={cn("scroll-mt-20 border-b py-8 sm:py-10", t.gridLine)}>
+          <div className="flex flex-col gap-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+            <div className="mx-auto max-w-lg sm:mx-0">
+              <p className={cn("text-overline", t.heading)}>Contato</p>
+              <h2 className="mt-2 font-display text-xl font-bold text-white sm:text-2xl">{contato.title}</h2>
+              <p className={cn("mt-3 text-sm leading-relaxed sm:text-[0.9375rem]", t.tagline)}>{contato.subtitle}</p>
+              <p className={cn("mt-4 text-xs sm:text-sm", theme === "kids" ? "text-white/55" : "text-white/45")}>
+                {ADDRESS.full}
+              </p>
+            </div>
+            <a
+              href={contatoWa}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-2 rounded-sm px-5 py-3 text-sm font-bold transition-colors sm:w-auto sm:text-base",
+                theme === "kids" ? "bg-jc-gold text-kids-blue-dark hover:bg-jc-gold-light" : "bg-jc-gold text-jc-black hover:bg-jc-gold-light",
+              )}
+            >
+              <IconWhatsapp size="sm" />
+              {theme === "kids" ? "Orçar festa no WhatsApp" : "Agendar visita no WhatsApp"}
+            </a>
+          </div>
+        </div>
+
         {/* ── Mobile ── */}
         <div className="md:hidden">
           <div className="flex justify-center pb-1 pt-4">
-            <Link href={theme === "kids" ? "/kids" : "/eventos"} aria-label="Ir para página inicial" className={SITE_LOGO_LINK_CLASS}>
+            <Link href="/" aria-label="Escolher modalidade — JC Eventos 204" className={SITE_LOGO_LINK_CLASS}>
               {theme === "eventos" ? (
                 <LogoEventos size="md" className="items-center [&_span]:text-center" />
               ) : (
@@ -324,7 +363,7 @@ export function SiteFooter({ theme }: SiteFooterProps) {
         <div className="hidden md:block">
           <div className="flex items-start justify-between gap-6 border-b border-white/10 py-5 lg:py-6">
             <div className="max-w-xs">
-              <Link href={theme === "kids" ? "/kids" : "/eventos"} aria-label="Ir para página inicial" className={SITE_LOGO_LINK_CLASS}>
+              <Link href="/" aria-label="Escolher modalidade — JC Eventos 204" className={SITE_LOGO_LINK_CLASS}>
                 {theme === "eventos" ? <LogoEventos size="md" /> : <LogoKids size="md" />}
               </Link>
               <p className={cn("mt-2.5 text-sm leading-relaxed", t.tagline)}>{t.taglineText}</p>

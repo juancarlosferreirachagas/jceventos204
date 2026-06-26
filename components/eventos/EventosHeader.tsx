@@ -1,71 +1,59 @@
-import Link from "next/link";
 import { HeaderBrandLink } from "@/components/shared/HeaderBrandLink";
-import { IconInstagram, IconWhatsapp } from "@/components/icons";
+import { MobileNavStrip } from "@/components/shared/MobileNavStrip";
+import { SectorSwitcher } from "@/components/shared/SectorSwitcher";
+import { IconInstagram } from "@/components/icons";
 import { LogoEventos } from "@/components/LogoEventos";
-import { EVENTOS, eventosWhatsApp } from "@/lib/site-copy";
-import { INSTAGRAM_URL, SITE_NAME } from "@/lib/site";
+import { INSTAGRAM_URL } from "@/lib/site";
 
 const NAV = [
   { href: "#servicos", label: "Serviços" },
-  { href: "#diferenciais", label: "Diferenciais" },
   { href: "#tour-360", label: "Tour" },
   { href: "#galeria", label: "Galeria" },
-  { href: "#avaliacoes", label: "Avaliações" },
+  { href: "#estrutura", label: "Estrutura" },
+  { href: "#faq", label: "FAQ" },
   { href: "#contato", label: "Contato" },
 ] as const;
 
 export function EventosHeader() {
   return (
     <header id="site-header" className="header-flyer sticky top-0 z-50">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:h-[4.5rem] sm:px-6 lg:px-8">
-        <div className="flex items-center gap-4">
-          <HeaderBrandLink href="/eventos" label={SITE_NAME}>
+      <div className="mx-auto flex min-h-14 max-w-7xl flex-wrap items-center justify-between gap-x-2 gap-y-2 px-4 py-2 sm:min-h-[4.25rem] sm:flex-nowrap sm:gap-3 sm:px-6 lg:px-8">
+        <div className="flex min-w-0 flex-1 items-center gap-2 sm:flex-initial sm:gap-3">
+          <HeaderBrandLink href="/" label="Escolher modalidade — JC Eventos 204">
             <LogoEventos size="sm" />
           </HeaderBrandLink>
-          <Link
-            href="/kids"
-            className="hidden rounded-sm border border-jc-gold/30 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-jc-gold-light transition-colors hover:bg-jc-gold/10 lg:inline-block"
-          >
-            JC Kids →
-          </Link>
+          <SectorSwitcher active="eventos" />
         </div>
 
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Eventos">
+        <nav className="hidden items-center gap-5 xl:flex" aria-label="JC Eventos 204">
           {NAV.map((item) => (
-            <a key={item.href} href={item.href} className="text-sm font-semibold text-white/85 transition-colors hover:text-jc-gold-light">
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-sm font-semibold text-white/85 transition-colors duration-200 hover:text-jc-gold-light"
+            >
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
-          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="hidden rounded-full p-2.5 text-jc-gold hover:bg-jc-gold/10 sm:inline-flex" aria-label="Instagram">
-            <IconInstagram size="md" />
-          </a>
-          <a
-            href={eventosWhatsApp()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center gap-2 rounded-sm bg-cta-bar px-3.5 py-2.5 text-xs font-bold text-cta-text sm:px-4 sm:text-sm"
-          >
-            <IconWhatsapp size="sm" />
-            <span className="hidden sm:inline">{EVENTOS.hero.cta}</span>
-            <span className="sm:hidden">Visita</span>
-          </a>
-        </div>
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden shrink-0 rounded-full p-2.5 text-jc-gold transition-colors duration-200 hover:bg-jc-gold/10 sm:inline-flex"
+          aria-label="Instagram"
+        >
+          <IconInstagram size="md" />
+        </a>
       </div>
 
-      <nav className="flex gap-1.5 overflow-x-auto border-t border-jc-gold/15 px-3 py-2.5 scrollbar-hide lg:hidden">
-        {NAV.map((item) => (
-          <a
-            key={item.href}
-            href={item.href}
-            className="shrink-0 snap-start rounded-sm px-3 py-2 text-xs font-semibold text-white/80 hover:text-jc-gold-light"
-          >
-            {item.label}
-          </a>
-        ))}
-      </nav>
+      <MobileNavStrip
+        aria-label="Menu mobile"
+        items={NAV}
+        className="border-t border-jc-gold/15"
+        linkClassName="rounded-sm px-3 py-2 text-xs font-semibold text-white/80 transition-colors duration-200 hover:text-jc-gold-light"
+      />
     </header>
   );
 }

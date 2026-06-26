@@ -8,7 +8,7 @@ export function OrganizationJsonLd() {
     name: SITE_NAME,
     url,
     description:
-      "Espaço para eventos em Barueri — casamentos, debutantes, corporativo e festas infantis JC Kids.",
+      "Espaço para eventos em Barueri — casamentos, debutantes, corporativo e festas infantis no JC Kids 204.",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Av. Diretriz, 204",

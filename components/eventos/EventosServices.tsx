@@ -1,5 +1,6 @@
 import { SiteImage } from "@/components/shared/SiteImage";
 import { CtaButton } from "@/components/shared/CtaButton";
+import { SectionIntro } from "@/components/shared/SectionIntro";
 import { EVENTOS } from "@/lib/site-copy";
 import { getWhatsAppHref } from "@/lib/site";
 
@@ -7,33 +8,40 @@ export function EventosServices() {
   const { servicos } = EVENTOS;
 
   return (
-    <section id="servicos" className="bg-jc-black py-16 lg:py-24">
+    <section id="servicos" className="section-py content-auto bg-jc-black">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className="text-sm font-bold uppercase tracking-widest text-jc-gold">{servicos.title}</p>
-        <h2 className="mt-2 font-display text-3xl font-bold text-white sm:text-4xl">{servicos.subtitle}</h2>
+        <SectionIntro
+          eyebrow={servicos.title}
+          title={servicos.subtitle}
+          subtitle="Casamento, debutante, corporativo ou aniversário — cada card abre conversa direta no WhatsApp."
+          theme="eventos"
+          surface="dark"
+        />
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2 sm:gap-7">
           {servicos.items.map((item) => (
             <article
               key={item.title}
-              className="group overflow-hidden rounded-2xl border border-jc-gold/15 bg-white/[0.03] transition-colors hover:border-jc-gold/40"
+              className="group overflow-hidden rounded-2xl border border-jc-gold/15 bg-white/[0.03] transition-[border-color,background-color] duration-200 hover:border-jc-gold/40 hover:bg-white/[0.05]"
             >
               <div className="relative aspect-[16/10] overflow-hidden">
                 <SiteImage
                   media={item.image}
-                  className="transition-transform duration-700 group-hover:scale-105"
+                  className="transition-transform duration-500 group-hover:scale-[1.02]"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-jc-black/80 to-transparent" />
-                <h3 className="absolute bottom-4 left-4 font-display text-2xl font-bold text-white">{item.title}</h3>
+                <h3 className="absolute bottom-4 left-4 font-display text-xl font-bold text-white sm:text-2xl">{item.title}</h3>
               </div>
-              <div className="p-5">
+              <div className="p-4 sm:p-5">
                 <p className="text-sm leading-relaxed text-white/70">{item.description}</p>
                 <CtaButton
                   href={getWhatsAppHref(item.whatsappMessage)}
                   theme="eventos"
                   variant="secondary"
-                  className="mt-4 w-full text-xs sm:w-auto sm:text-sm"
+                  size="sm"
+                  showWhatsapp
+                  className="mt-4 w-full sm:w-auto"
                 >
                   {item.cta}
                 </CtaButton>

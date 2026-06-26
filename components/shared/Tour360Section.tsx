@@ -20,7 +20,7 @@ export function Tour360Section({ eyebrow, title, emphasis, subtitle, badge, them
     <section
       id="tour-360"
       className={cn(
-        "relative overflow-hidden py-14 sm:py-20 lg:py-24",
+        "section-py content-auto relative overflow-hidden",
         theme === "kids"
           ? "bg-gradient-to-b from-white via-sky-50 to-[#e8f6fc]"
           : "bg-gradient-to-b from-[#0d0d0d] via-jc-black to-[#050505]",
@@ -80,12 +80,12 @@ export function Tour360Section({ eyebrow, title, emphasis, subtitle, badge, them
           <h2
             className={cn(
               "animate-fade-in-up mt-5 font-display text-[2rem] font-semibold leading-[1.1] sm:text-4xl lg:text-5xl [animation-delay:80ms]",
-              theme === "kids" ? "text-kids-blue-dark" : "text-flyer-headline",
+              theme === "kids" ? "text-kids-blue-dark" : "text-white",
             )}
           >
             {title}
             <br />
-            <em className="text-gold-gradient tour-title-shimmer not-italic">{emphasis}</em>
+            <em className="text-jc-gold not-italic">{emphasis}</em>
           </h2>
 
           <div

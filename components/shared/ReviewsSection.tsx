@@ -3,6 +3,7 @@
 import { Star, ExternalLink } from "lucide-react";
 import { IconGoogle } from "@/components/icons";
 import { GOOGLE_AVERAGE_RATING, GOOGLE_MAPS_REVIEWS_URL, GOOGLE_REVIEW_COUNT, GOOGLE_REVIEWS, REVIEWS_COPY } from "@/lib/reviews";
+import { SectionIntro } from "@/components/shared/SectionIntro";
 import { CtaButton } from "@/components/shared/CtaButton";
 import { cn } from "@/lib/utils";
 
@@ -16,18 +17,17 @@ export function ReviewsSection({ theme = "eventos" }: ReviewsSectionProps) {
   const totalCount = hasReviews ? GOOGLE_REVIEW_COUNT : null;
 
   return (
-    <section id="avaliacoes" className={cn("py-16 lg:py-24", theme === "kids" ? "bg-white" : "bg-jc-black")}>
+    <section id="avaliacoes" className={cn("section-py content-auto", theme === "kids" ? "bg-white" : "bg-jc-black")}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className={cn("text-sm font-bold uppercase tracking-widest", theme === "kids" ? "text-kids-cyan" : "text-jc-gold")}>
-              {REVIEWS_COPY.googleLabel}
-            </p>
-            <h2 className={cn("mt-2 font-display text-3xl font-bold sm:text-4xl", theme === "kids" ? "text-kids-blue-dark" : "text-white")}>
-              {REVIEWS_COPY.title}
-            </h2>
-            <p className={cn("mt-2 max-w-xl", theme === "kids" ? "text-kids-blue-dark/70" : "text-white/65")}>{REVIEWS_COPY.subtitle}</p>
-          </div>
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <SectionIntro
+            eyebrow={REVIEWS_COPY.googleLabel}
+            title={REVIEWS_COPY.title}
+            subtitle={REVIEWS_COPY.subtitle}
+            theme={theme}
+            surface={theme === "kids" ? "light" : "dark"}
+            className="mb-0 sm:mb-0"
+          />
           {avg !== null && (
             <div className="flex flex-col items-start gap-1 sm:items-end">
               <div className="flex items-center gap-2">
@@ -36,7 +36,7 @@ export function ReviewsSection({ theme = "eventos" }: ReviewsSectionProps) {
                 </span>
                 <div className="flex">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className={cn("h-5 w-5", i < Math.round(avg) ? "fill-kids-yellow text-kids-yellow" : "text-white/20")} />
+                    <Star key={i} className={cn("h-5 w-5", i < Math.round(avg) ? "fill-jc-gold text-jc-gold" : theme === "kids" ? "text-kids-blue-dark/20" : "text-white/20")} />
                   ))}
                 </div>
               </div>

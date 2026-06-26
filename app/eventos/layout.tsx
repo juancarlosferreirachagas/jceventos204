@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { EventosHeader } from "@/components/eventos/EventosHeader";
 import { EventosFooter } from "@/components/eventos/EventosFooter";
 import { PromoBanner } from "@/components/shared/PromoBanner";
+import { SectorPageEnter } from "@/components/shared/SectorPageEnter";
 import { WhatsAppFloat } from "@/components/shared/WhatsAppFloat";
 import { EVENTOS } from "@/lib/site-copy";
 import { OG_IMAGES } from "@/lib/media";
@@ -21,7 +22,9 @@ export default function EventosLayout({ children }: { children: React.ReactNode 
     <div data-theme="eventos" className="min-h-screen bg-jc-black">
       <PromoBanner theme="eventos" />
       <EventosHeader />
-      <main>{children}</main>
+      <main>
+        <SectorPageEnter sector="eventos">{children}</SectorPageEnter>
+      </main>
       <EventosFooter />
       <WhatsAppFloat theme="eventos" />
     </div>

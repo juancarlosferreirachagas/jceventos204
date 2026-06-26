@@ -1,5 +1,6 @@
 import { SiteImage } from "@/components/shared/SiteImage";
 import { CtaButton } from "@/components/shared/CtaButton";
+import { SectionIntro } from "@/components/shared/SectionIntro";
 import { KIDS } from "@/lib/site-copy";
 import { getWhatsAppHref } from "@/lib/site";
 
@@ -7,31 +8,38 @@ export function KidsServices() {
   const { servicos } = KIDS;
 
   return (
-    <section id="servicos" className="bg-gradient-to-b from-sky-50 to-white py-16 lg:py-24">
+    <section id="servicos" className="section-py content-auto bg-gradient-to-b from-sky-50 to-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className="text-sm font-bold uppercase tracking-widest text-kids-cyan">{servicos.title}</p>
-        <h2 className="mt-2 font-kids text-3xl font-bold text-kids-blue-dark sm:text-4xl">{servicos.subtitle}</h2>
+        <SectionIntro
+          eyebrow={servicos.title}
+          title={servicos.subtitle}
+          subtitle="Aniversário, tema ou brinquedoteca — escolha o pacote e monte a proposta com a nossa equipe."
+          theme="kids"
+          surface="light"
+        />
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-3">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-3">
           {servicos.items.map((item) => (
             <article
               key={item.title}
-              className="group overflow-hidden rounded-3xl border-4 border-kids-cyan/20 bg-white shadow-lg shadow-kids-cyan/10 transition-transform hover:-translate-y-1"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-kids-cyan/20 bg-white shadow-md shadow-kids-cyan/5 transition-[border-color,box-shadow] duration-200 hover:border-kids-cyan/40 sm:rounded-3xl"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <SiteImage
                   media={item.image}
-                  className="transition-transform duration-700 group-hover:scale-105"
+                  className="transition-transform duration-500 group-hover:scale-[1.02]"
                   sizes="(max-width: 1024px) 100vw, 33vw"
                 />
               </div>
-              <div className="p-5">
-                <h3 className="font-kids text-xl font-bold text-kids-blue-dark">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-kids-blue-dark/70">{item.description}</p>
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <h3 className="font-display text-lg font-bold text-kids-blue-dark sm:text-xl">{item.title}</h3>
+                <p className="mt-2 flex-1 text-pretty text-sm leading-relaxed text-kids-blue-dark/72 sm:text-[0.9375rem]">
+                  {item.description}
+                </p>
                 <CtaButton
                   href={getWhatsAppHref(item.whatsappMessage)}
                   theme="kids"
-                  className="mt-4 w-full text-xs sm:text-sm"
+                  className="mt-5 w-full text-xs sm:text-sm"
                 >
                   {item.cta}
                 </CtaButton>

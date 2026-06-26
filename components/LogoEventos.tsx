@@ -15,7 +15,7 @@ export function LogoEventos({ className, size = "md" }: LogoEventosProps) {
   const s = sizes[size];
   return (
     <div className={cn("flex flex-col items-start leading-none", className)}>
-      <span className={cn("font-display font-semibold text-gold-gradient", s.jc)} aria-hidden>
+      <span className={cn("font-display font-bold text-jc-gold", s.jc)} aria-hidden>
         JC
       </span>
       <span className={cn("mt-0.5 font-sans font-semibold uppercase text-jc-gold", s.sub)}>Eventos 204</span>

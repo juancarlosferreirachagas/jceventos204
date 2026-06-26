@@ -16,7 +16,7 @@ export default function HomePage() {
         </div>
       </header>
       <main>
-        <div className="border-b border-jc-gold/20 bg-jc-black py-6 text-center">
+        <div className="border-b border-jc-gold/20 bg-jc-black py-4 text-center sm:py-5">
           <h1 className="font-display text-xl font-bold text-white sm:text-2xl">
             {GATEWAY.title}
           </h1>

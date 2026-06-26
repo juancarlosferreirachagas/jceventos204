@@ -93,7 +93,7 @@ export function Tour360Panel({ theme, className }: Tour360PanelProps) {
           <p className={cn("mb-2.5 text-center text-[0.625rem] font-bold uppercase tracking-[0.16em] sm:text-xs", theme === "kids" ? "text-kids-blue-dark/50" : "text-white/40")}>
             Escolha o ambiente
           </p>
-          <div className="-mx-1 flex gap-2.5 overflow-x-auto px-1 pb-0.5 scrollbar-hide snap-x snap-mandatory sm:justify-center sm:overflow-visible sm:flex-wrap">
+          <div className="scroll-fluid-x -mx-1 flex gap-2.5 px-1 pb-0.5 sm:justify-center sm:overflow-visible sm:flex-wrap">
             {tours.map((t) => {
               const active = sceneId === t.id;
               return (
@@ -104,7 +104,7 @@ export function Tour360Panel({ theme, className }: Tour360PanelProps) {
                   aria-selected={active}
                   onClick={() => setSceneId(t.id)}
                   className={cn(
-                    "w-[4.75rem] shrink-0 snap-start overflow-hidden rounded-xl border-2 transition-all duration-300 sm:w-[5.5rem]",
+                    "w-[4.75rem] shrink-0 snap-fluid overflow-hidden rounded-xl border-2 transition-[border-color,opacity,transform] duration-300 sm:w-[5.5rem]",
                     "min-h-[48px] touch-manipulation",
                     active
                       ? theme === "kids"

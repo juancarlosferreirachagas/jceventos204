@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import type { GalleryItem } from "@/lib/media";
+import { SectionIntro } from "@/components/shared/SectionIntro";
 import { cn } from "@/lib/utils";
 
 type GaleriaSectionProps = {
@@ -26,16 +27,11 @@ export function GaleriaSection({
     active === "Todos" ? items : items.filter((item) => item.category === active);
 
   return (
-    <section id="galeria" className={cn("py-16 lg:py-24", theme === "kids" ? "bg-sky-50" : "bg-[#111]")}>
+    <section id="galeria" className={cn("section-py content-auto", theme === "kids" ? "bg-sky-50" : "bg-[#111]")}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className={cn("text-sm font-bold uppercase tracking-widest", theme === "kids" ? "text-kids-cyan" : "text-jc-gold")}>
-          {title}
-        </p>
-        <h2 className={cn("mt-2 font-display text-3xl font-bold sm:text-4xl", theme === "kids" ? "text-kids-blue-dark" : "text-white")}>
-          {subtitle}
-        </h2>
+        <SectionIntro eyebrow={title} title={subtitle} theme={theme} surface={theme === "kids" ? "light" : "dark"} />
 
-        <div className="mt-8 flex flex-wrap gap-2" role="tablist">
+        <div className="mt-2 flex flex-wrap gap-2 sm:mt-0" role="tablist">
           {filters.map((filter) => (
             <button
               key={filter}

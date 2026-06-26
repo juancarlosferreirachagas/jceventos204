@@ -25,7 +25,7 @@ Abra [http://localhost:3000](http://localhost:3000)
 |-------|------|
 | Textos e CTAs | `lib/site-copy.ts` |
 | Imagens (paths, alt, crop) | `lib/media/` — ver [lib/media/README.md](lib/media/README.md) |
-| Legal / promo 50% | `lib/site-legal.ts` |
+| Legal / promo até 35% | `lib/site-legal.ts` |
 | Avaliações Google | `lib/reviews.ts` |
 | Contato / WhatsApp | `lib/site.ts` |
 | Ícones de marca | `components/icons/` |

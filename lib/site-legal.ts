@@ -1,15 +1,15 @@
 /** Textos legais e disclaimers — fonte única para promessas comerciais. */
 
 export const PROMO_LEGAL = {
-  /** Desconto de locação em dias úteis */
+  /** Desconto de locação em dias úteis — base: tabela vs. à vista (35% máx.) */
   weekdayDiscount: {
-    headline: "50% OFF em locações de segunda a sexta",
+    headline: "Até 35% OFF em locações de segunda a quinta",
     subline: "Condição promocional por tempo limitado",
     disclaimer:
-      "Desconto de até 50% aplicável a locações de segunda a sexta, conforme disponibilidade de data e pacote. Valor final e condições na proposta, antes da confirmação.",
+      "Desconto de até 35% em locações de segunda a quinta, conforme disponibilidade, pacote e forma de pagamento. Valor final e condições na proposta, antes da confirmação.",
     cta: "Consultar promoção",
     whatsappMessage:
-      "Olá! Vi a promoção de 50% para locações durante a semana e gostaria de consultar disponibilidade.",
+      "Olá! Vi a promoção de até 35% para locações de segunda a quinta e gostaria de consultar disponibilidade.",
   },
 } as const;
 
